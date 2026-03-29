@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ゴルフレッスン カルテ管理</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif;
+      background: #f0f4f0;
+      color: #2d3a2d;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2e6b3e, #4a9e5c);
+      color: white;
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    header span {
+      font-size: 0.85rem;
+      opacity: 0.85;
+    }
+
+    .toolbar {
+      padding: 20px 32px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: #2e6b3e;
+      color: white;
+    }
+    .btn-primary:hover { background: #245530; transform: translateY(-1px); }
+
+    .btn-secondary {
+      background: white;
+      color: #2e6b3e;
+      border: 2px solid #2e6b3e;
+    }
+    .btn-secondary:hover { background: #edf7ef; }
+
+    .btn-danger {
+      background: #e74c3c;
+      color: white;
+      padding: 6px 14px;
+      font-size: 0.8rem;
+    }
+    .btn-danger:hover { background: #c0392b; }
+
+    .btn-edit {
+      background: #f39c12;
+      color: white;
+      padding: 6px 14px;
+      font-size: 0.8rem;
+    }
+    .btn-edit:hover { background: #d68910; }
+
+    .search-box {
+      padding: 10px 16px;
+      border: 2px solid #c8deca;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      width: 220px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-box:focus { border-color: #2e6b3e; }
+
+    /* カードグリッド */
+    .cards-grid {
+      padding: 0 32px 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.13); transform: translateY(-2px); }
+
+    .card-header {
+      background: linear-gradient(135deg, #2e6b3e, #4a9e5c);
+      color: white;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .card-header .student-name {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .card-header .lesson-date {
+      font-size: 0.8rem;
+      opacity: 0.9;
+      margin-top: 4px;
+    }
+
+    .card-header .card-actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .badges {
+      padding: 12px 20px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      border-bottom: 1px solid #eef3ee;
+    }
+
+    .badge {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .badge-4stance {
+      background: #e8f5e9;
+      color: #2e6b3e;
+      border: 1px solid #a5d6a7;
+    }
+
+    .badge-score {
+      background: #fff3e0;
+      color: #e65100;
+      border: 1px solid #ffcc80;
+    }
+
+    .card-body {
+      padding: 16px 20px;
+    }
+
+    .section {
+      margin-bottom: 14px;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #4a9e5c;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 3px;
+      height: 12px;
+      background: #4a9e5c;
+      border-radius: 2px;
+    }
+
+    .section-content {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: #3d4f3d;
+      white-space: pre-wrap;
+      background: #f8fbf8;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border-left: 3px solid #c8deca;
+    }
+
+    .section-content.challenge { border-left-color: #f39c12; background: #fffdf5; }
+    .section-content.homework  { border-left-color: #3498db; background: #f5faff; }
+
+    /* モーダル */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.active { display: flex; }
+
+    .modal {
+      background: white;
+      border-radius: 16px;
+      padding: 32px;
+      width: 90%;
+      max-width: 580px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+
+    .modal h2 {
+      font-size: 1.2rem;
+      color: #2e6b3e;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #eef3ee;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #3d4f3d;
+      margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 13px;
+      border: 2px solid #c8deca;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+      color: #2d3a2d;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: #2e6b3e; }
+
+    .form-group textarea { resize: vertical; min-height: 80px; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid #eef3ee;
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      color: #7a9a7a;
+    }
+
+    .empty-state .icon { font-size: 3rem; margin-bottom: 12px; }
+    .empty-state p { font-size: 1rem; }
+
+    @media (max-width: 600px) {
+      header { padding: 16px 20px; }
+      .toolbar { padding: 16px 20px; }
+      .cards-grid { padding: 0 16px 32px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>ゴルフレッスン カルテ</h1>
+    <span>生徒ごとのレッスン記録を管理</span>
+  </div>
+  <span id="card-count" style="font-size:0.95rem; background:rgba(255,255,255,0.2); padding:6px 14px; border-radius:20px;"></span>
+</header>
+
+<div class="toolbar">
+  <button class="btn btn-primary" onclick="openModal()">＋ 新規カルテ作成</button>
+  <input class="search-box" type="text" id="search" placeholder="生徒名で検索..." oninput="renderCards()">
+  <button class="btn btn-secondary" onclick="exportData()">エクスポート</button>
+  <label class="btn btn-secondary" style="cursor:pointer;">
+    インポート
+    <input type="file" accept=".json" style="display:none" onchange="importData(event)">
+  </label>
+</div>
+
+<div class="cards-grid" id="cards-grid"></div>
+
+<!-- モーダル -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOnOverlay(event)">
+  <div class="modal">
+    <h2 id="modal-title">新規カルテ作成</h2>
+    <input type="hidden" id="edit-id">
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>生徒名 <span style="color:#e74c3c">*</span></label>
+        <input type="text" id="f-name" placeholder="例：山田 太郎">
+      </div>
+      <div class="form-group">
+        <label>レッスン日 <span style="color:#e74c3c">*</span></label>
+        <input type="date" id="f-date">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>4スタンスタイプ</label>
+        <select id="f-stance">
+          <option value="">-- 未設定 --</option>
+          <optgroup label="A系">
+            <option value="A1">A1タイプ</option>
+            <option value="A2">A2タイプ</option>
+          </optgroup>
+          <optgroup label="B系">
+            <option value="B1">B1タイプ</option>
+            <option value="B2">B2タイプ</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>スコア帯</label>
+        <select id="f-score">
+          <option value="">-- 未設定 --</option>
+          <option value="70台">70台</option>
+          <option value="80台">80台</option>
+          <option value="90台">90台</option>
+          <option value="100台">100台</option>
+          <option value="110台">110台</option>
+          <option value="120以上">120以上</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>レッスン内容メモ</label>
+      <textarea id="f-memo" placeholder="今回のレッスンで行った内容を記録..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>スイングの課題・改善点</label>
+      <textarea id="f-challenge" placeholder="気になった癖や改善すべきポイント..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>次回への宿題・目標</label>
+      <textarea id="f-homework" placeholder="次回レッスンまでに取り組む内容や目標..."></textarea>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn btn-secondary" onclick="closeModal()">キャンセル</button>
+      <button class="btn btn-primary" onclick="saveKarte()">保存する</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const STORAGE_KEY = 'golf_kartes';
+
+  function loadData() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+    catch { return []; }
+  }
+
+  function saveData(data) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  }
+
+  function today() {
+    return new Date().toISOString().split('T')[0];
+  }
+
+  function formatDate(d) {
+    if (!d) return '';
+    const [y, m, day] = d.split('-');
+    return `${y}年${m}月${day}日`;
+  }
+
+  function stanceColor(s) {
+    if (!s) return '';
+    return s.startsWith('A') ? '#2e6b3e' : '#1a5276';
+  }
+
+  function renderCards() {
+    const data = loadData();
+    const q = document.getElementById('search').value.trim().toLowerCase();
+    const filtered = q ? data.filter(k => k.name.toLowerCase().includes(q)) : data;
+    const grid = document.getElementById('cards-grid');
+
+    document.getElementById('card-count').textContent = `${data.length} 件`;
+
+    if (filtered.length === 0) {
+      grid.innerHTML = `
+        <div class="empty-state">
+          <div class="icon">⛳</div>
+          <p>${q ? '該当する生徒が見つかりません' : 'カルテがまだありません。「新規カルテ作成」から追加してください。'}</p>
+        </div>`;
+      return;
+    }
+
+    grid.innerHTML = filtered.map(k => `
+      <div class="card" id="card-${k.id}">
+        <div class="card-header">
+          <div>
+            <div class="student-name">${esc(k.name)}</div>
+            <div class="lesson-date">${formatDate(k.date)}</div>
+          </div>
+          <div class="card-actions">
+            <button class="btn btn-edit" onclick="editKarte('${k.id}')">編集</button>
+            <button class="btn btn-danger" onclick="deleteKarte('${k.id}')">削除</button>
+          </div>
+        </div>
+        <div class="badges">
+          ${k.stance ? `<span class="badge badge-4stance" style="background:#e8f5e9; color:${stanceColor(k.stance)}">4スタンス: ${esc(k.stance)}</span>` : ''}
+          ${k.score  ? `<span class="badge badge-score">スコア帯: ${esc(k.score)}</span>` : ''}
+          ${!k.stance && !k.score ? '<span style="font-size:0.8rem;color:#aaa">タイプ・スコア未設定</span>' : ''}
+        </div>
+        <div class="card-body">
+          ${k.memo ? `
+            <div class="section">
+              <div class="section-label">レッスン内容</div>
+              <div class="section-content">${esc(k.memo)}</div>
+            </div>` : ''}
+          ${k.challenge ? `
+            <div class="section">
+              <div class="section-label">課題・改善点</div>
+              <div class="section-content challenge">${esc(k.challenge)}</div>
+            </div>` : ''}
+          ${k.homework ? `
+            <div class="section">
+              <div class="section-label">宿題・目標</div>
+              <div class="section-content homework">${esc(k.homework)}</div>
+            </div>` : ''}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function esc(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function openModal(karte = null) {
+    document.getElementById('modal-title').textContent = karte ? 'カルテ編集' : '新規カルテ作成';
+    document.getElementById('edit-id').value   = karte ? karte.id   : '';
+    document.getElementById('f-name').value    = karte ? karte.name  : '';
+    document.getElementById('f-date').value    = karte ? karte.date  : today();
+    document.getElementById('f-stance').value  = karte ? karte.stance : '';
+    document.getElementById('f-score').value   = karte ? karte.score  : '';
+    document.getElementById('f-memo').value    = karte ? karte.memo   : '';
+    document.getElementById('f-challenge').value = karte ? karte.challenge : '';
+    document.getElementById('f-homework').value  = karte ? karte.homework  : '';
+    document.getElementById('modal-overlay').classList.add('active');
+    document.getElementById('f-name').focus();
+  }
+
+  function closeModal() {
+    document.getElementById('modal-overlay').classList.remove('active');
+  }
+
+  function closeModalOnOverlay(e) {
+    if (e.target === document.getElementById('modal-overlay')) closeModal();
+  }
+
+  function saveKarte() {
+    const name = document.getElementById('f-name').value.trim();
+    const date = document.getElementById('f-date').value;
+    if (!name) { alert('生徒名を入力してください。'); return; }
+    if (!date) { alert('レッスン日を選択してください。'); return; }
+
+    const data = loadData();
+    const editId = document.getElementById('edit-id').value;
+
+    const karte = {
+      id:        editId || Date.now().toString(),
+      name,
+      date,
+      stance:    document.getElementById('f-stance').value,
+      score:     document.getElementById('f-score').value,
+      memo:      document.getElementById('f-memo').value.trim(),
+      challenge: document.getElementById('f-challenge').value.trim(),
+      homework:  document.getElementById('f-homework').value.trim(),
+    };
+
+    if (editId) {
+      const idx = data.findIndex(k => k.id === editId);
+      if (idx >= 0) data[idx] = karte;
+    } else {
+      data.unshift(karte);
+    }
+
+    saveData(data);
+    closeModal();
+    renderCards();
+  }
+
+  function editKarte(id) {
+    const karte = loadData().find(k => k.id === id);
+    if (karte) openModal(karte);
+  }
+
+  function deleteKarte(id) {
+    if (!confirm('このカルテを削除してよろしいですか？')) return;
+    saveData(loadData().filter(k => k.id !== id));
+    renderCards();
+  }
+
+  function exportData() {
+    const data = loadData();
+    if (data.length === 0) { alert('エクスポートするデータがありません。'); return; }
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `golf_kartes_${today()}.json`;
+    a.click();
+  }
+
+  function importData(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      try {
+        const imported = JSON.parse(e.target.result);
+        if (!Array.isArray(imported)) throw new Error();
+        if (!confirm(`${imported.length}件のカルテをインポートします。現在のデータに追加しますか？`)) return;
+        const current = loadData();
+        const merged = [...imported, ...current.filter(c => !imported.find(i => i.id === c.id))];
+        saveData(merged);
+        renderCards();
+        alert('インポートが完了しました。');
+      } catch {
+        alert('ファイルの形式が正しくありません。');
+      }
+    };
+    reader.readAsText(file);
+    event.target.value = '';
+  }
+
+  // Enterキーで保存
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // サンプルデータ（初回のみ）
+  (function initSample() {
+    const samples = [
+      {
+        id: '1',
+        name: '中村 明仁',
+        date: '2026-03-28',
+        stance: 'B2',
+        score: '80台',
+        memo: 'アイアンのダフリ改善・安定した当たりを目指してレッスン\nB2タイプに合わせたアドレスの見直し',
+        challenge: '・B2の軸を意識した骨盤で地面を踏む動き\n・胸郭の可動域が不足（回転が浅い）\n・スイング軌道がアウトサイドイン傾向',
+        homework: '・骨盤で地面を踏む感覚の素振り練習\n・4/8（水）ラウンドで今日の修正点を実践確認',
+      },
+    ];
+    saveData(samples);
+  })();
+
+  renderCards();
+</script>
+</body>
+</html>
