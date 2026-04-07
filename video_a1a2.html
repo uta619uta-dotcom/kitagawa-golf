@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A1・A2 グリップの正解｜4スタンス理論</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Bebas+Neue&display=swap');
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#07080d;
+  --surface:#0f1118;
+  --a1:#1af0ff;
+  --a2:#00ff9d;
+  --gold:#f5c842;
+  --red:#ff4f4f;
+  --white:#eeecea;
+  --dim:#555968;
+  --card:#13161f;
+}
+
+html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;font-family:'Noto Sans JP',sans-serif;color:var(--white)}
+
+/* ═══ CANVAS ═══ */
+#app{width:100vw;height:100vh;position:relative;display:flex;align-items:center;justify-content:center}
+
+/* ═══ BACKGROUND ═══ */
+#bg-canvas{position:absolute;inset:0;pointer-events:none;z-index:0}
+
+/* ═══ SCENE LAYER ═══ */
+#scene{position:relative;z-index:10;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+
+/* ═══ SCENE TYPES ═══ */
+.scene{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:60px 80px;
+  opacity:0;pointer-events:none;
+}
+.scene.in{opacity:1;pointer-events:auto}
+
+/* ═══ TYPEWRITER LINES ═══ */
+.tw-line{
+  overflow:hidden;white-space:nowrap;
+  max-width:fit-content;
+  border-right:none;
+}
+.tw-line.typing{
+  animation:type var(--dur,1.2s) steps(var(--steps,30),end) both;
+}
+@keyframes type{from{width:0}to{width:100%}}
+
+.tw-block{display:flex;flex-direction:column;align-items:center;gap:12px}
+
+/* ═══ FADE-IN ELEMENTS ═══ */
+.fade-in{opacity:0;transform:translateY(16px);transition:opacity 0.5s ease,transform 0.5s ease}
+.fade-in.show{opacity:1;transform:translateY(0)}
+.fade-in.from-left{transform:translateX(-20px)}
+.fade-in.from-left.show{transform:translateX(0)}
+
+/* ═══ TYPOGRAPHY ═══ */
+.tag{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:12px;letter-spacing:5px;
+  color:var(--gold);margin-bottom:8px;
+}
+.title-xl{
+  font-size:clamp(36px,6vw,80px);
+  font-weight:900;line-height:1.05;text-align:center;
+}
+.title-lg{
+  font-size:clamp(26px,4vw,52px);
+  font-weight:700;line-height:1.15;text-align:center;
+}
+.title-md{
+  font-size:clamp(20px,3vw,36px);
+  font-weight:700;line-height:1.3;
+}
+.body{font-size:clamp(14px,1.6vw,17px);line-height:1.9;color:#c8cad4;max-width:640px;text-align:center}
+.body-left{font-size:clamp(14px,1.6vw,17px);line-height:1.9;color:#c8cad4}
+
+.c1{color:var(--a1)} .c2{color:var(--a2)} .cg{color:var(--gold)} .cr{color:var(--red)}
+
+/* ═══ DIVIDER ═══ */
+.divider{width:48px;height:2px;background:var(--gold);margin:18px auto}
+
+/* ═══ SPLIT LAYOUT ═══ */
+.split{display:flex;gap:48px;width:100%;max-width:960px;align-items:flex-start}
+.half{flex:1}
+
+/* ═══ HAND SVG WRAPPER ═══ */
+.hand-wrap{
+  display:flex;justify-content:center;align-items:center;
+  padding:16px;
+}
+
+/* ═══ GRIP CARD ═══ */
+.grip-card{
+  background:var(--card);
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,0.07);
+  padding:28px 24px;
+  position:relative;overflow:hidden;
+}
+.grip-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.grip-card.a1::before{background:var(--a1)}
+.grip-card.a2::before{background:var(--a2)}
+
+.grip-row{display:flex;gap:10px;align-items:flex-start;margin-bottom:14px;font-size:14px;line-height:1.7}
+.grip-tag{
+  font-size:10px;letter-spacing:1px;
+  padding:3px 8px;border-radius:4px;
+  white-space:nowrap;margin-top:3px;flex-shrink:0;
+  background:rgba(255,255,255,0.05);color:var(--dim);
+}
+.a1 .grip-tag{border-left:2px solid var(--a1)}
+.a2 .grip-tag{border-left:2px solid var(--a2)}
+
+.ng-box{
+  background:rgba(255,79,79,0.07);
+  border:1px solid rgba(255,79,79,0.25);
+  border-radius:8px;
+  padding:12px 16px;
+  font-size:13px;line-height:1.8;color:#ffaaaa;
+  margin-top:12px;
+}
+
+/* ═══ COMPARE TABLE ═══ */
+.ctable{width:100%;border-collapse:collapse;font-size:14px;max-width:800px}
+.ctable th{
+  padding:12px 20px;
+  font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
+.ctable th:nth-child(2){color:var(--a1)} .ctable th:nth-child(3){color:var(--a2)}
+.ctable td{padding:13px 20px;border-bottom:1px solid rgba(255,255,255,0.05);line-height:1.6}
+.ctable td:first-child{color:var(--dim);font-size:11px;letter-spacing:1px;white-space:nowrap}
+.ctable td:nth-child(2){color:rgba(26,240,255,0.9)}
+.ctable td:nth-child(3){color:rgba(0,255,157,0.9)}
+
+/* ═══ QUOTE ═══ */
+.quote{
+  border-left:3px solid var(--gold);
+  padding:20px 28px;
+  background:rgba(245,200,66,0.04);
+  border-radius:0 12px 12px 0;
+  font-size:clamp(15px,1.8vw,19px);
+  font-weight:300;line-height:1.9;
+  max-width:680px;
+}
+
+/* ═══ STEP LIST ═══ */
+.slist{list-style:none;max-width:580px;width:100%}
+.slist li{display:flex;gap:14px;align-items:flex-start;padding:13px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:14px;line-height:1.7}
+.snum{
+  width:26px;height:26px;flex-shrink:0;border-radius:50%;
+  background:rgba(245,200,66,0.12);border:1px solid var(--gold);
+  color:var(--gold);font-family:'Bebas Neue',sans-serif;font-size:14px;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* ═══ BIG FORMULA ═══ */
+.formula{
+  display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center;
+  font-size:clamp(14px,2vw,22px);font-weight:700;line-height:1.6;
+  margin-top:28px;
+}
+.formula-box{
+  background:var(--card);border:1px solid rgba(255,255,255,0.1);
+  border-radius:12px;padding:14px 24px;text-align:center;font-size:inherit;
+}
+.formula-eq{color:var(--gold);font-size:1.4em}
+.formula-result{
+  background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.3);
+  border-radius:12px;padding:14px 24px;text-align:center;color:var(--gold);
+}
+
+/* ═══ TIMELINE / PROGRESS ═══ */
+#timeline{
+  position:fixed;bottom:0;left:0;right:0;height:2px;
+  background:rgba(255,255,255,0.06);z-index:100;
+}
+#tl-fill{height:100%;background:linear-gradient(90deg,var(--a1),var(--a2));width:0%;transition:width 0.3s ease}
+
+/* ═══ SCENE DOTS ═══ */
+#dots{
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+  display:flex;gap:8px;z-index:100;
+}
+.dot{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(255,255,255,0.2);transition:all 0.3s ease;cursor:pointer;
+}
+.dot.on{background:var(--gold);width:18px;border-radius:3px}
+
+/* ═══ CONTROLS ═══ */
+#controls{
+  position:fixed;bottom:44px;right:32px;
+  display:flex;gap:10px;z-index:100;
+}
+#controls button{
+  width:40px;height:40px;border-radius:50%;
+  border:1px solid rgba(255,255,255,0.12);
+  background:rgba(255,255,255,0.04);
+  color:var(--white);font-size:16px;cursor:pointer;
+  transition:all 0.2s;display:flex;align-items:center;justify-content:center;
+}
+#controls button:hover{background:rgba(255,255,255,0.1);border-color:var(--gold)}
+
+#play-btn{
+  position:fixed;bottom:44px;left:32px;
+  background:rgba(245,200,66,0.1);border:1px solid rgba(245,200,66,0.3);
+  color:var(--gold);font-family:'Noto Sans JP',sans-serif;font-size:12px;
+  padding:8px 18px;border-radius:20px;cursor:pointer;z-index:100;
+  transition:all 0.2s;letter-spacing:1px;
+}
+#play-btn:hover{background:rgba(245,200,66,0.18)}
+
+/* ═══ NARRATION BOX ═══ */
+#narration{
+  position:fixed;bottom:68px;left:50%;transform:translateX(-50%);
+  background:rgba(7,8,13,0.88);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:12px;padding:14px 24px;
+  font-size:14px;line-height:1.7;
+  color:#c8cad4;max-width:600px;width:90%;
+  text-align:center;z-index:100;
+  opacity:0;transition:opacity 0.4s ease;
+  backdrop-filter:blur(8px);
+}
+#narration.show{opacity:1}
+
+/* ═══ ANIMATED SCAN LINE ═══ */
+@keyframes scan{0%{top:-2px}100%{top:100%}}
+.scanline{
+  position:absolute;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,rgba(26,240,255,0.15),transparent);
+  animation:scan 4s linear infinite;pointer-events:none;z-index:5;
+}
+
+/* ═══ PARTICLE DOTS ═══ */
+.particle{
+  position:absolute;border-radius:50%;pointer-events:none;
+  animation:float var(--d,6s) ease-in-out infinite var(--delay,0s);
+}
+@keyframes float{0%,100%{transform:translateY(0) translateX(0);opacity:0.3}50%{transform:translateY(-30px) translateX(10px);opacity:0.7}}
+</style>
+</head>
+<body>
+<div id="app">
+  <!-- Animated Background Canvas -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="scanline"></div>
+
+  <div id="scene">
+
+    <!-- ━━━ SCENE 0: TITLE ━━━ -->
+    <div class="scene in" id="sc0">
+      <div class="tw-block">
+        <div class="tag fade-in show" style="transition-delay:0.2s">4スタンス理論 ｜ 北川ゴルフ教室</div>
+        <div class="title-xl fade-in show" style="transition-delay:0.5s">
+          <span class="c1">A1</span> と <span class="c2">A2</span> タイプ
+        </div>
+        <div class="title-xl fade-in show" style="transition-delay:0.8s;color:var(--gold)">
+          グリップの正解
+        </div>
+        <div class="divider fade-in show" style="transition-delay:1.1s"></div>
+        <div class="body fade-in show" style="transition-delay:1.4s">
+          同じAタイプでも、握り方は根本的に違う
+        </div>
+      </div>
+    </div>
+
+    <!-- ━━━ SCENE 1: QUESTION ━━━ -->
+    <div class="scene" id="sc1">
+      <div class="tag fade-in">QUESTION</div>
+      <div class="title-lg fade-in" style="transition-delay:0.1s">
+        そのグリップ、<span class="cg">あなたの体</span>に合ってますか？
+      </div>
+      <div class="divider fade-in" style="transition-delay:0.3s"></div>
+      <div class="quote fade-in" style="transition-delay:0.5s">
+        「プロのグリップを完コピしたのに、なんかしっくりこない…」<br>
+        それは当然です。プロのタイプが、あなたのタイプと <span class="cr">違うから</span>。
+      </div>
+      <div class="body fade-in" style="transition-delay:0.8s;margin-top:24px">
+        グリップは<strong style="color:var(--white)">真似するもの</strong>ではなく、<strong style="color:var(--white)">タイプから導くもの</strong>。
+      </div>
+    </div>
+
+    <!-- ━━━ SCENE 2: A TYPE COMMON ━━━ -->
+    <div class="scene" id="sc2">
+      <div class="tag fade-in">A TYPE — COMMON PRINCIPLE</div>
+      <div class="title-lg fade-in" style="transition-delay:0.1s">
+        A系タイプに共通する<span class="cg">グリップの原則</span>
+      </div>
+      <div class="divider fade-in" style="transition-delay:0.3s"></div>
+      <ul class="slist fade-in" style="transition-delay:0.5s">
+        <li>
+          <span class="snum">1</span>
+          <span><strong style="color:var(--white)">指先を使って絡める</strong>のが基本。B系の「手の平で包む」感覚とは根本的に違う。</span>
+        </li>
+        <li>
+          <span class="snum">2</span>
+          <span>グリップは体のエンジン（スイング軸）と<strong style="color:var(--white)">直結</strong>している。手元の感覚でスイング全体が変わる。</span>
+        </li>
+        <li>
+          <span class="snum">3</span>
+          <span>A1とA2は<strong style="color:var(--white)">体の軸の位置が違う</strong>。同じA系でも、グリップは別物。</span>
+        </li>
+      </ul>
+    </div>
+
+    <!-- ━━━ SCENE 3: A1 GRIP ━━━ -->
+    <div class="scene" id="sc3">
+      <div class="split fade-in">
+        <div class="half">
+          <div class="tag" style="color:var(--a1)">A1 TYPE — SHIFT & MOVE</div>
+          <div class="title-md" style="color:var(--a1);margin-bottom:20px">A1タイプのグリップ</div>
+          <div class="grip-card a1">
+            <div class="grip-row">
+              <span class="grip-tag">当てるライン</span>
+              <span>手の平から人差し指の<strong style="color:var(--a1)">第三関節への斜めライン</strong>。シャフトを斜めに引っかけるイメージ。</span>
+            </div>
+            <div class="grip-row">
+              <span class="grip-tag">主導部</span>
+              <span><strong style="color:var(--white)">指先から絡める</strong>。小・薬・中の3本指から。</span>
+            </div>
+            <div class="grip-row">
+              <span class="grip-tag">親指</span>
+              <span>オンシャフトにせず、<strong style="color:var(--a1)">横切るように軽く添える</strong>だけ。</span>
+            </div>
+            <div class="ng-box">
+              <strong style="color:var(--red)">NG</strong>：手の平で受ける ／ 親指を強く押し付ける ／ 右手に力を入れすぎる
+            </div>
+          </div>
+        </div>
+        <div class="half" style="display:flex;align-items:center;justify-content:center">
+          <svg width="180" height="260" viewBox="0 0 180 260">
+            <defs>
+              <filter id="glow1"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+            <!-- palm -->
+            <ellipse cx="90" cy="160" rx="62" ry="72" fill="#141720" stroke="rgba(26,240,255,0.3)" stroke-width="1.5"/>
+            <!-- fingers -->
+            <rect x="34" y="58" width="20" height="82" rx="10" fill="#1a1f30" stroke="rgba(26,240,255,0.25)" stroke-width="1"/>
+            <rect x="60" y="36" width="20" height="96" rx="10" fill="#1a1f30" stroke="rgba(26,240,255,0.25)" stroke-width="1"/>
+            <rect x="86" y="30" width="20" height="102" rx="10" fill="#1a1f30" stroke="rgba(26,240,255,0.25)" stroke-width="1"/>
+            <rect x="112" y="40" width="20" height="92" rx="10" fill="#1a1f30" stroke="rgba(26,240,255,0.25)" stroke-width="1"/>
+            <!-- thumb -->
+            <ellipse cx="22" cy="132" rx="15" ry="32" fill="#1a1f30" stroke="rgba(26,240,255,0.25)" stroke-width="1" transform="rotate(-18 22 132)"/>
+            <!-- A1 grip line: diagonal -->
+            <line x1="24" y1="168" x2="140" y2="96" stroke="#1af0ff" stroke-width="3.5" stroke-linecap="round" filter="url(#glow1)" opacity="0.95"/>
+            <circle cx="24" cy="168" r="5" fill="#1af0ff" filter="url(#glow1)"/>
+            <circle cx="140" cy="96" r="5" fill="#1af0ff" filter="url(#glow1)"/>
+            <!-- label -->
+            <text x="90" y="242" text-anchor="middle" fill="#1af0ff" font-family="Noto Sans JP" font-size="12" opacity="0.9">斜めライン</text>
+            <!-- animated pulse -->
+            <circle cx="90" cy="130" r="30" fill="none" stroke="rgba(26,240,255,0.1)" stroke-width="1">
+              <animate attributeName="r" from="20" to="60" dur="2.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" from="0.3" to="0" dur="2.5s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ━━━ SCENE 4: A2 GRIP ━━━ -->
+    <div class="scene" id="sc4">
+      <div class="split fade-in">
+        <div class="half">
+          <div class="tag" style="color:var(--a2)">A2 TYPE — SOLID SPIN</div>
+          <div class="title-md" style="color:var(--a2);margin-bottom:20px">A2タイプのグリップ</div>
+          <div class="grip-card a2">
+            <div class="grip-row">
+              <span class="grip-tag">当てるライン</span>
+              <span>指の付け根ラインに<strong style="color:var(--a2)">平行なイメージ</strong>。A1より少しフラット寄り。</span>
+            </div>
+            <div class="grip-row">
+              <span class="grip-tag">主導部</span>
+              <span>指先から絡め、さらに<strong style="color:var(--a2)">しっかり握り込む</strong>。クラブを吊るためのホールド力。</span>
+            </div>
+            <div class="grip-row">
+              <span class="grip-tag">親指</span>
+              <span><strong style="color:var(--a2)">オン・シャフトで楽に乗せる</strong>。絞りすぎず、縦の動きに追随させる。</span>
+            </div>
+            <div class="ng-box">
+              <strong style="color:var(--red)">NG</strong>：指先だけで軽く持つ ／ 親指を横切らせる（A1グリップはNG）／ 胸を張る
+            </div>
+          </div>
+        </div>
+        <div class="half" style="display:flex;align-items:center;justify-content:center">
+          <svg width="180" height="260" viewBox="0 0 180 260">
+            <defs>
+              <filter id="glow2"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            </defs>
+            <ellipse cx="90" cy="160" rx="62" ry="72" fill="#141720" stroke="rgba(0,255,157,0.3)" stroke-width="1.5"/>
+            <rect x="34" y="58" width="20" height="82" rx="10" fill="#1a1f30" stroke="rgba(0,255,157,0.25)" stroke-width="1"/>
+            <rect x="60" y="36" width="20" height="96" rx="10" fill="#1a1f30" stroke="rgba(0,255,157,0.25)" stroke-width="1"/>
+            <rect x="86" y="30" width="20" height="102" rx="10" fill="#1a1f30" stroke="rgba(0,255,157,0.25)" stroke-width="1"/>
+            <rect x="112" y="40" width="20" height="92" rx="10" fill="#1a1f30" stroke="rgba(0,255,157,0.25)" stroke-width="1"/>
+            <ellipse cx="22" cy="132" rx="15" ry="32" fill="#1a1f30" stroke="rgba(0,255,157,0.25)" stroke-width="1" transform="rotate(-18 22 132)"/>
+            <!-- A2 grip line: horizontal (parallel to knuckles) -->
+            <line x1="30" y1="124" x2="146" y2="120" stroke="#00ff9d" stroke-width="3.5" stroke-linecap="round" filter="url(#glow2)" opacity="0.95"/>
+            <circle cx="30" cy="124" r="5" fill="#00ff9d" filter="url(#glow2)"/>
+            <circle cx="146" cy="120" r="5" fill="#00ff9d" filter="url(#glow2)"/>
+            <text x="90" y="242" text-anchor="middle" fill="#00ff9d" font-family="Noto Sans JP" font-size="12" opacity="0.9">付け根ライン（平行）</text>
+            <circle cx="90" cy="122" r="30" fill="none" stroke="rgba(0,255,157,0.1)" stroke-width="1">
+              <animate attributeName="r" from="20" to="60" dur="2.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" from="0.3" to="0" dur="2.5s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- ━━━ SCENE 5: COMPARE ━━━ -->
+    <div class="scene" id="sc5">
+      <div class="tag fade-in">COMPARISON</div>
+      <div class="title-lg fade-in" style="transition-delay:0.1s">A1 vs A2 — グリップの違い</div>
+      <div class="divider fade-in" style="transition-delay:0.2s"></div>
+      <table class="ctable fade-in" style="transition-delay:0.4s">
+        <tr>
+          <th></th><th>A1 Type</th><th>A2 Type</th>
+        </tr>
+        <tr>
+          <td>当てるライン</td>
+          <td>掌〜人差し指第三関節（斜め）</td>
+          <td>指の付け根ライン（平行）</td>
+        </tr>
+        <tr>
+          <td>主導部</td>
+          <td>指先から絡める</td>
+          <td>絡めてさらに握り込む</td>
+        </tr>
+        <tr>
+          <td>親指</td>
+          <td>オンシャフトにしない（横切る）</td>
+          <td>オン・シャフト（楽に）</td>
+        </tr>
+        <tr>
+          <td>スイングイメージ</td>
+          <td>上から降ろす</td>
+          <td>クラブを吊るように振る</td>
+        </tr>
+        <tr>
+          <td>体重移動</td>
+          <td>左右にシフト</td>
+          <td>その場でスピン</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- ━━━ SCENE 6: CONCLUSION ━━━ -->
+    <div class="scene" id="sc6">
+      <div class="tag fade-in">CONCLUSION</div>
+      <div class="title-lg fade-in" style="transition-delay:0.15s">
+        グリップは<span class="cg">真似するもの</span>ではなく<br>自分のタイプから<span class="cg">導くもの</span>
+      </div>
+      <div class="divider fade-in" style="transition-delay:0.3s"></div>
+      <div class="formula fade-in" style="transition-delay:0.5s">
+        <div class="formula-box">生体機能に合った<br><span class="c1">グリップ</span></div>
+        <div style="color:var(--gold);font-size:2em">+</div>
+        <div class="formula-box">固有の<br><span class="c2">スタンス軸</span></div>
+        <div class="formula-eq">=</div>
+        <div class="formula-result">必然の完璧な<br>インパクト</div>
+      </div>
+      <div class="body fade-in" style="transition-delay:0.9s;margin-top:28px">
+        概要欄のLINEから、あなたのタイプ別シャフトガイドを<span class="cg">無料</span>でお届けしています
+      </div>
+    </div>
+
+  </div><!-- /scene -->
+
+  <!-- ━━━ UI ━━━ -->
+  <div id="timeline"><div id="tl-fill"></div></div>
+  <div id="dots"></div>
+  <div id="controls">
+    <button id="prev-btn">&#8592;</button>
+    <button id="next-btn">&#8594;</button>
+  </div>
+  <button id="play-btn">▶ 自動再生</button>
+  <div id="narration"></div>
+</div>
+
+<script>
+// ━━━ BG CANVAS ━━━
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+
+function resizeCanvas(){
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+for(let i = 0; i < 80; i++){
+  particles.push({
+    x: Math.random()*1920, y: Math.random()*1080,
+    vx: (Math.random()-0.5)*0.15, vy: (Math.random()-0.5)*0.15,
+    r: Math.random()*1.5+0.3,
+    a: Math.random()*0.4+0.1,
+    color: Math.random() > 0.5 ? '#1af0ff' : '#00ff9d'
+  });
+}
+
+function drawBg(){
+  ctx.clearRect(0,0,W,H);
+  // Grid
+  ctx.strokeStyle = 'rgba(26,240,255,0.03)';
+  ctx.lineWidth = 1;
+  const gs = 70;
+  for(let x=0;x<W;x+=gs){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke()}
+  for(let y=0;y<H;y+=gs){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke()}
+  // Particles
+  particles.forEach(p=>{
+    p.x += p.vx; p.y += p.vy;
+    if(p.x<0)p.x=W; if(p.x>W)p.x=0;
+    if(p.y<0)p.y=H; if(p.y>H)p.y=0;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+    ctx.fillStyle = p.color;
+    ctx.globalAlpha = p.a;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+  });
+  requestAnimationFrame(drawBg);
+}
+drawBg();
+
+// ━━━ SCENES ━━━
+const narrations = [
+  '4スタンス理論では、体のタイプに合ったグリップが最も重要です。',
+  'プロの真似が通じないのは、タイプが違うから。グリップはタイプから導くものです。',
+  'A系タイプは共通して指先でクラブを絡めます。ただしA1とA2では方法が変わります。',
+  'A1タイプ：斜めラインへの引っかけグリップ。親指は横切るように軽く添えるのがポイント。',
+  'A2タイプ：付け根ラインへの平行グリップ。クラブを吊るイメージでしっかり握り込む。',
+  '同じAタイプでも、ラインも親指の位置も、スイングイメージも根本的に異なります。',
+  '正しいグリップ＋正しいスタンス軸＝インパクトは自然に発生します。'
+];
+
+const scenes = document.querySelectorAll('.scene');
+const totalScenes = scenes.length;
+let current = 0;
+let autoTimer = null;
+let isPlaying = false;
+const AUTO_DUR = 7000;
+
+// Build dots
+const dotsEl = document.getElementById('dots');
+for(let i=0;i<totalScenes;i++){
+  const d = document.createElement('div');
+  d.className = 'dot' + (i===0?' on':'');
+  d.onclick = ()=>{ stopAuto(); goTo(i); };
+  dotsEl.appendChild(d);
+}
+
+function showScene(n){
+  scenes[current].classList.remove('in');
+  // hide fade elements
+  scenes[current].querySelectorAll('.fade-in').forEach(el=>el.classList.remove('show'));
+  current = Math.max(0,Math.min(n,totalScenes-1));
+  scenes[current].classList.add('in');
+  // stagger fade-in
+  setTimeout(()=>{
+    scenes[current].querySelectorAll('.fade-in').forEach((el,i)=>{
+      setTimeout(()=>el.classList.add('show'), i*80);
+    });
+  }, 80);
+  // dots
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i===current));
+  // progress
+  document.getElementById('tl-fill').style.width = ((current/(totalScenes-1))*100)+'%';
+  // narration
+  showNarration(narrations[current]);
+}
+
+function showNarration(text){
+  const el = document.getElementById('narration');
+  el.classList.remove('show');
+  setTimeout(()=>{ el.textContent=text; el.classList.add('show'); }, 300);
+}
+
+function goTo(n){ showScene(n); resetAutoBar(); }
+
+function startAuto(){
+  isPlaying = true;
+  document.getElementById('play-btn').textContent = '⏸ 停止';
+  resetAutoBar();
+  autoTimer = setInterval(()=>{
+    if(current < totalScenes-1){ goTo(current+1); }
+    else { stopAuto(); }
+  }, AUTO_DUR);
+}
+
+function stopAuto(){
+  isPlaying = false;
+  clearInterval(autoTimer);
+  document.getElementById('play-btn').textContent = '▶ 自動再生';
+  const bar = document.getElementById('tl-fill');
+  bar.style.transition='none'; bar.style.width='0%';
+  setTimeout(()=>{ bar.style.transition=''; goTo(current); },50);
+}
+
+function resetAutoBar(){
+  if(!isPlaying) return;
+  const bar = document.getElementById('tl-fill');
+  bar.style.transition='none';
+  bar.style.width='0%';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    bar.style.transition = 'width '+AUTO_DUR+'ms linear';
+    bar.style.width = '100%';
+  }));
+}
+
+document.getElementById('play-btn').onclick = ()=>{ isPlaying?stopAuto():startAuto() };
+document.getElementById('next-btn').onclick = ()=>{ stopAuto(); goTo(current+1) };
+document.getElementById('prev-btn').onclick = ()=>{ stopAuto(); goTo(current-1) };
+
+document.addEventListener('keydown', e=>{
+  if(e.key==='ArrowRight'||e.key===' '){ stopAuto(); goTo(current+1); }
+  if(e.key==='ArrowLeft'){ stopAuto(); goTo(current-1); }
+});
+
+// Init
+showScene(0);
+</script>
+</body>
+</html>
