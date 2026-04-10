@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>北川ゴルフ教室 | Kitagawa Golf School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a18;
+    --mist: #f5f3ee;
+    --moss: #4a5e42;
+    --gold: #b8943c;
+    --cream: #faf8f3;
+    --stone: #8a8678;
+    --warm-white: #fdfcf9;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Serif JP', serif;
+    background: var(--warm-white);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ─── HEADER / NAV ─── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 60px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(253,252,249,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(26,26,24,0.08);
+    transition: background 0.4s;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+  .logo-jp {
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: var(--ink);
+  }
+  .logo-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    color: var(--stone);
+    text-transform: uppercase;
+  }
+
+  nav { display: flex; gap: 40px; align-items: center; }
+  nav a {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    color: var(--ink);
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 2px;
+  }
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 1px;
+    background: var(--moss);
+    transition: width 0.3s ease;
+  }
+  nav a:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--moss);
+    color: #fff !important;
+    padding: 9px 22px !important;
+    border-radius: 2px;
+    font-size: 11px !important;
+    letter-spacing: 0.14em !important;
+    transition: background 0.3s;
+  }
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: #3a4e34 !important; }
+
+  /* ─── HERO ─── */
+  .hero {
+    height: 100vh;
+    min-height: 700px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 10vh;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(26,26,24,0.12) 0%, rgba(26,26,24,0.5) 100%),
+      url('https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1600&q=80') center/cover no-repeat;
+    transform: scale(1.04);
+    animation: heroZoom 8s ease-out forwards;
+  }
+
+  @keyframes heroZoom {
+    from { transform: scale(1.08); }
+    to   { transform: scale(1.00); }
+  }
+
+  .hero-content {
+    position: relative;
+    padding-left: 12vw;
+    animation: fadeUp 1.2s ease 0.3s both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(13px, 1.5vw, 17px);
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    color: rgba(255,255,255,0.75);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .hero-title {
+    font-size: clamp(36px, 5.5vw, 72px);
+    font-weight: 300;
+    line-height: 1.3;
+    color: #fff;
+    letter-spacing: 0.08em;
+    margin-bottom: 28px;
+  }
+  .hero-title em {
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .hero-desc {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.72);
+    line-height: 2;
+    max-width: 380px;
+    margin-bottom: 44px;
+  }
+
+  .hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.65);
+    color: #fff;
+    padding: 14px 32px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.35s ease;
+  }
+  .hero-btn:hover {
+    background: rgba(255,255,255,0.18);
+    border-color: rgba(255,255,255,0.9);
+    gap: 20px;
+  }
+  .hero-btn .arrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    transition: transform 0.3s;
+  }
+  .hero-btn:hover .arrow { transform: translateX(4px); }
+
+  /* scroll indicator */
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    right: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,0.5);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: fadeUp 1.5s ease 1s both;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: rgba(255,255,255,0.25);
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.7);
+    animation: scrollDown 1.8s ease infinite;
+  }
+  @keyframes scrollDown {
+    from { top: -100%; }
+    to   { top: 100%; }
+  }
+
+  /* ─── SECTION COMMON ─── */
+  section { padding: 110px 12vw; }
+
+  .sec-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 16px;
+    display: block;
+  }
+  .sec-title {
+    font-size: clamp(24px, 3vw, 38px);
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  .sec-body {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 2.2;
+    color: #555;
+    max-width: 560px;
+  }
+
+  /* ─── PHILOSOPHY ─── */
+  .philosophy {
+    background: var(--mist);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .philosophy-img {
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+  .philosophy-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s ease;
+    display: block;
+  }
+  .philosophy-img:hover img { transform: scale(1.04); }
+
+  .philosophy-text { padding-right: 4vw; }
+
+  .gold-rule {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 32px 0;
+  }
+
+  .sns-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .sns-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .sns-btn:hover { opacity: 0.82; transform: translateY(-1px); }
+  .sns-btn.youtube  { background: #ff0000; color: #fff; }
+  .sns-btn.tiktok   { background: #010101; color: #fff; }
+  .sns-btn.line     { background: #06c755; color: #fff; }
+  .sns-btn.litlink  { background: var(--moss); color: #fff; }
+
+  .profile-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 44px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(26,26,24,0.12);
+  }
+  .profile-icon {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: var(--moss);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .profile-text { font-family: 'Noto Sans JP', sans-serif; }
+  .profile-name { font-size: 14px; font-weight: 400; letter-spacing: 0.06em; }
+  .profile-role { font-size: 11px; color: var(--stone); letter-spacing: 0.08em; margin-top: 3px; }
+
+  /* ─── 4STANCE SECTION ─── */
+  .stance-section { background: var(--warm-white); }
+
+  .stance-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .stance-card {
+    background: var(--mist);
+    padding: 36px 28px;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+    transition: background 0.35s;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .stance-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .stance-card:hover::before { transform: scaleX(1); }
+  .stance-card:hover { background: #edeae3; }
+
+  .stance-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    font-weight: 300;
+    color: rgba(26,26,24,0.07);
+    position: absolute;
+    top: 16px; right: 20px;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .stance-tag {
+    display: inline-block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--moss);
+    border: 1px solid var(--moss);
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 14px;
+  }
+
+  .stance-name {
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+  .stance-desc {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--stone);
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+  }
+
+  .stance-card.active {
+    background: var(--moss);
+  }
+  .stance-card.active .stance-name { color: #fff; }
+  .stance-card.active .stance-desc { color: rgba(255,255,255,0.7); }
+  .stance-card.active .stance-tag { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.4); }
+  .stance-card.active .stance-num { color: rgba(255,255,255,0.1); }
+
+  /* ─── LESSON PLANS ─── */
+  .plans-section {
+    background: var(--ink);
+    color: #fff;
+  }
+  .plans-section .sec-label { color: var(--gold); }
+  .plans-section .sec-title { color: #fff; }
+  .plans-section .sec-body { color: rgba(255,255,255,0.55); }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+  }
+
+  .plan-card {
+    background: rgba(255,255,255,0.04);
+    padding: 44px 36px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.3s;
+    position: relative;
+  }
+  .plan-card:hover { background: rgba(255,255,255,0.08); }
+
+  .plan-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 6px;
+  }
+  .plan-name-jp {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.1em;
+    margin-bottom: 32px;
+  }
+
+  .plan-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .plan-price span {
+    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+    margin-left: 4px;
+  }
+  .plan-freq {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    margin-bottom: 36px;
+  }
+
+  .plan-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .plan-features li {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.06em;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.7;
+  }
+  .plan-features li::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1px;
+    background: var(--gold);
+    margin-top: 10px;
+    flex-shrink: 0;
+  }
+
+  .plan-badge {
+    position: absolute;
+    top: 20px; right: 20px;
+    background: var(--gold);
+    color: #fff;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    padding: 4px 12px;
+    border-radius: 2px;
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials {
+    background: var(--mist);
+  }
+
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 60px;
+  }
+
+  .testi-card {
+    background: var(--warm-white);
+    padding: 36px 32px;
+    border-radius: 2px;
+    position: relative;
+  }
+  .testi-card::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px;
+    color: var(--mist);
+    position: absolute;
+    top: 8px; left: 24px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .testi-stars {
+    display: flex;
+    gap: 3px;
+    margin-bottom: 18px;
+  }
+  .testi-stars span {
+    color: var(--gold);
+    font-size: 12px;
+  }
+
+  .testi-text {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 2.1;
+    color: #555;
+    letter-spacing: 0.04em;
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .testi-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid rgba(26,26,24,0.1);
+    padding-top: 18px;
+  }
+  .testi-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--moss);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .testi-info p:first-child {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+  }
+  .testi-info p:last-child {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 11px;
+    color: var(--stone);
+    font-weight: 300;
+    margin-top: 2px;
+  }
+
+  /* ─── LOCATIONS ─── */
+  .locations {
+    background: var(--warm-white);
+  }
+
+  .loc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin-top: 60px;
+  }
+
+  .loc-card {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .loc-card img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+    display: block;
+  }
+  .loc-card:hover img { transform: scale(1.06); }
+  .loc-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26,26,24,0.7) 0%, transparent 60%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px 32px;
+  }
+  .loc-name {
+    font-size: 18px;
+    font-weight: 300;
+    color: #fff;
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+  .loc-sub {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 11px;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.06em;
+  }
+
+  /* ─── CTA BANNER ─── */
+  .cta-banner {
+    padding: 100px 12vw;
+    background:
+      linear-gradient(to right, rgba(74,94,66,0.96) 0%, rgba(58,78,52,0.94) 100%),
+      url('https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=1200&q=70') center/cover no-repeat;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 60px;
+  }
+
+  .cta-title {
+    font-size: clamp(22px, 3vw, 36px);
+    font-weight: 300;
+    color: #fff;
+    letter-spacing: 0.08em;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .cta-sub {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.1em;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--warm-white);
+    color: var(--moss);
+    padding: 16px 36px;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.3s;
+    white-space: nowrap;
+  }
+  .cta-btn:hover { background: #fff; gap: 18px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.45);
+    padding: 64px 12vw 40px;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 32px;
+  }
+
+  .footer-brand .logo-jp { color: rgba(255,255,255,0.85); }
+  .footer-brand .logo-en { color: rgba(255,255,255,0.3); }
+  .footer-tagline {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    line-height: 2;
+    margin-top: 20px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .footer-col h4 {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 20px;
+  }
+  .footer-col a {
+    display: block;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    margin-bottom: 12px;
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: rgba(255,255,255,0.7); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-copy {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.08em;
+  }
+  .footer-award {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+  }
+
+  /* ─── FADE-IN ON SCROLL ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <span class="logo-jp">北川ゴルフ教室</span>
+    <span class="logo-en">Kitagawa Golf School</span>
+  </div>
+  <nav>
+    <a href="#philosophy">指導理念</a>
+    <a href="#stance">4スタンス</a>
+    <a href="#plans">レッスン</a>
+    <a href="#locations">開催場所</a>
+    <a href="#plans" class="nav-cta">体験予約</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-sub">Since 2001 · Nagoya, Aichi</span>
+    <h1 class="hero-title">
+      あなたの型で、<br>
+      <em>本当のスイングへ。</em>
+    </h1>
+    <p class="hero-desc">
+      4スタンス理論に基づく個別指導で、<br>
+      力みのない、美しいゴルフを。
+    </p>
+    <a href="#plans" class="hero-btn">
+      体験レッスンを予約する
+      <span class="arrow">→</span>
+    </a>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="philosophy">
+  <div class="philosophy-img reveal">
+    <img src="https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?w=800&q=80" alt="ゴルフ指導の場面">
+  </div>
+  <div class="philosophy-text reveal">
+    <span class="sec-label">Our Philosophy</span>
+    <h2 class="sec-title">型を知れば、<br>ゴルフは変わる。</h2>
+    <div class="gold-rule"></div>
+    <p class="sec-body">
+      人それぞれに生まれ持った「動きの型」があります。<br>
+      4スタンス理論はその型を4つに分類し、<br>
+      あなただけに合ったスイングを導き出す指導法です。<br><br>
+      23年間、愛知県内で約45名の生徒に向き合い続けてきた<br>
+      北川誠が、あなたの型に合った動きを丁寧に解説します。
+    </p>
+    <div class="profile-row">
+      <img src="makoto.jpeg" alt="北川誠" style="width:60px;height:60px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(74,94,66,0.25);">
+      <div class="profile-text">
+        <div class="profile-name">北川 誠</div>
+        <div class="profile-role">代表インストラクター ／ 2013年 World Golf Teachers Cup 優勝</div>
+        <div class="sns-row">
+          <a href="https://www.youtube.com/@kitagawa-golf" target="_blank" class="sns-btn youtube">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+            YouTube
+          </a>
+          <a href="https://www.tiktok.com/@kitagawa_golf" target="_blank" class="sns-btn tiktok">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M19.6 3a4.5 4.5 0 0 1-4.4-4H11v10.7L11 17a2.6 2.6 0 1 1-1.8-2.5V10.3A6.8 6.8 0 0 0 4.4 17a6.6 6.6 0 0 0 6.6 6.5 6.6 6.6 0 0 0 6.6-6.6V8.7a8.7 8.7 0 0 0 5.1 1.7V6.2A4.5 4.5 0 0 1 19.6 3z"/></svg>
+            TikTok
+          </a>
+          <a href="https://lin.ee/491tuwoe" target="_blank" class="sns-btn line">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M19.4 0H4.6A4.6 4.6 0 0 0 0 4.6v14.8A4.6 4.6 0 0 0 4.6 24h14.8A4.6 4.6 0 0 0 24 19.4V4.6A4.6 4.6 0 0 0 19.4 0zM12 17.5C6.8 17.5 2.5 14 2.5 9.8S6.8 2 12 2s9.5 3.5 9.5 7.8c0 2.3-1.2 4.3-3.2 5.7l.5 2-2.4-1.2A10.9 10.9 0 0 1 12 17.5z"/></svg>
+            LINE
+          </a>
+          <a href="https://lit.link/kitagawa50lf" target="_blank" class="sns-btn litlink">
+            lit.link
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4STANCE -->
+<section class="stance-section" id="stance">
+  <div class="reveal">
+    <span class="sec-label">The 4-Stance Theory</span>
+    <h2 class="sec-title">4スタンス理論で<br>あなたのタイプを知る</h2>
+    <p class="sec-body">A1・A2・B1・B2の4タイプ。それぞれの重心・軸・リリースに合わせた指導法で、無駄のないスイングを実現します。</p>
+  </div>
+  <div class="stance-grid reveal">
+    <div class="stance-card">
+      <div class="stance-num">A1</div>
+      <span class="stance-tag">Type A1</span>
+      <div class="stance-name">A1タイプ</div>
+      <p class="stance-desc">自然に立つと、重心が土踏まずのつま先側・内側へ自然と落ち込む。下半身の切り上げ動作でクラブが目標方向へ抜けるシャープなスイング。</p>
+    </div>
+    <div class="stance-card">
+      <div class="stance-num">A2</div>
+      <span class="stance-tag">Type A2</span>
+      <div class="stance-name">A2タイプ</div>
+      <p class="stance-desc">自然に立つと、重心が土踏まずのつま先側・外側へ自然と落ち込む。右半身から左半身へためなく切り上げるシンプルで無駄のないスイング。</p>
+    </div>
+    <div class="stance-card">
+      <div class="stance-num">B1</div>
+      <span class="stance-tag">Type B1</span>
+      <div class="stance-name">B1タイプ</div>
+      <p class="stance-desc">自然に立つと、重心が土踏まずのかかと側・内側へ自然と落ち込む。両足の同圧を保ちながら、右→左の背中引き込み動作で力強い捻転を生むスイング。</p>
+    </div>
+    <div class="stance-card active">
+      <div class="stance-num">B2</div>
+      <span class="stance-tag">Type B2</span>
+      <div class="stance-name">B2タイプ</div>
+      <p class="stance-desc">自然に立つと、重心が土踏まずのかかと側・外側へ自然と落ち込む。両足の同圧を保ちつつ、みぞおちと肘の柔軟性でためを作る。北川自身のタイプ。</p>
+    </div>
+  </div>
+</section>
+
+<!-- LESSON PLANS -->
+<section class="plans-section" id="plans">
+  <div class="reveal">
+    <span class="sec-label">Lesson Plans</span>
+    <h2 class="sec-title">レッスンプラン</h2>
+    <p class="sec-body">はじめての方の体験レッスンから、本格的な月謝制プログラムまで。あなたのペースで上達をサポートします。</p>
+  </div>
+  <div class="plans-grid reveal">
+    <div class="plan-card">
+      <div class="plan-name">Trial</div>
+      <div class="plan-name-jp">体験レッスン</div>
+      <div class="plan-price">¥1,000<span>（税込）</span></div>
+      <div class="plan-freq">スクール体験 60分</div>
+      <ul class="plan-features">
+        <li>4スタンスタイプ診断</li>
+        <li>基本スイングチェック</li>
+        <li>個別フィードバック</li>
+      </ul>
+    </div>
+    <div class="plan-card">
+      <div class="plan-name">YouTube Model</div>
+      <div class="plan-name-jp">個人体験・YouTube出演</div>
+      <div class="plan-price">無料</div>
+      <div class="plan-freq">個人体験 15分</div>
+      <ul class="plan-features">
+        <li>スイング撮影・動画出演</li>
+        <li>タイプ診断＆アドバイス</li>
+        <li>YouTube掲載で振り返り可能</li>
+      </ul>
+    </div>
+    <div class="plan-card">
+      <div class="plan-badge">人気</div>
+      <div class="plan-name">Monthly</div>
+      <div class="plan-name-jp">月謝制レッスン</div>
+      <div class="plan-price">¥10,000<span>/ 月</span></div>
+      <div class="plan-freq">月4回・各60分</div>
+      <ul class="plan-features">
+        <li>継続的なスイング改善</li>
+        <li>4スタンス理論に基づく個別指導</li>
+        <li>LINEでの質問対応</li>
+        <li>愛知県内複数会場から選択可</li>
+      </ul>
+    </div>
+    <div class="plan-card">
+      <div class="plan-name">Ticket</div>
+      <div class="plan-name-jp">回数券</div>
+      <div class="plan-price">都度<span>相談</span></div>
+      <div class="plan-freq">ご都合に合わせて</div>
+      <ul class="plan-features">
+        <li>柔軟なスケジュール対応</li>
+        <li>ラウンドレッスンも対応</li>
+        <li>オンラインZoom指導</li>
+        <li>動画教材・MOSHコンテンツ</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="reveal">
+    <span class="sec-label">Voice of Students</span>
+    <h2 class="sec-title">生徒の声</h2>
+  </div>
+  <div class="testi-grid reveal">
+    <div class="testi-card">
+      <div class="testi-stars">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+      <p class="testi-text">自分がB2タイプだとわかった瞬間、ずっと悩んでいたフォームの違和感が解消されました。力を入れなくても飛ぶようになって驚いています。</p>
+      <div class="testi-author">
+        <div class="testi-avatar">T</div>
+        <div class="testi-info">
+          <p>田中 様</p>
+          <p>50代・男性・歴3年</p>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+      <p class="testi-text">北川先生は押しつけがなく、私のペースで進めてくれます。スコアより「気持ちよく打てること」を大切にしてくれる指導が心地よいです。</p>
+      <div class="testi-author">
+        <div class="testi-avatar">S</div>
+        <div class="testi-info">
+          <p>佐藤 様</p>
+          <p>40代・女性・歴1年</p>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      </div>
+      <p class="testi-text">YouTube動画でタイプ診断をして、そのまま体験レッスンに申込みました。動画の内容と実際の指導がつながっていて理解しやすかったです。</p>
+      <div class="testi-author">
+        <div class="testi-avatar">K</div>
+        <div class="testi-info">
+          <p>加藤 様</p>
+          <p>60代・男性・歴8年</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section class="locations" id="locations">
+  <div class="reveal">
+    <span class="sec-label">Locations</span>
+    <h2 class="sec-title">開催場所</h2>
+    <p class="sec-body">愛知県内の4拠点で開催。あなたのお近くの会場をお選びください。</p>
+  </div>
+  <div class="loc-grid reveal">
+    <div class="loc-card">
+      <img src="https://images.unsplash.com/photo-1510674742166-b57d0f2b8c10?w=800&q=70" alt="バーディーゴルフ">
+      <div class="loc-overlay">
+        <div class="loc-name">バーディーゴルフ</div>
+        <div class="loc-sub">愛知県愛西市 ／ 火曜 19:00</div>
+      </div>
+    </div>
+    <div class="loc-card">
+      <img src="https://images.unsplash.com/photo-1592919505780-303950717480?w=800&q=70" alt="和合ゴルフパートナー">
+      <div class="loc-overlay">
+        <div class="loc-name">和合ゴルフパートナー</div>
+        <div class="loc-sub">愛知県愛知郡東郷町 ／ 火曜 13:00・月曜 19:00</div>
+      </div>
+    </div>
+    <div class="loc-card">
+      <img src="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?w=800&q=70" alt="中日ゴルフ">
+      <div class="loc-overlay">
+        <div class="loc-name">中日ゴルフ</div>
+        <div class="loc-sub">愛知県知多市 ／ 木曜・土曜</div>
+      </div>
+    </div>
+    <div class="loc-card">
+      <img src="https://images.unsplash.com/photo-1545299741-f95e0b7d2d4a?w=800&q=70" alt="ゾディア名古屋">
+      <div class="loc-overlay">
+        <div class="loc-name">ゾディア名古屋</div>
+        <div class="loc-sub">名古屋市 室内 ／ マンツーマンレッスン</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner reveal">
+  <div>
+    <h2 class="cta-title">まずは、体験レッスンから。</h2>
+    <p class="cta-sub">あなたのスタンスタイプを診断し、最初の一歩を踏み出しましょう。</p>
+  </div>
+  <a href="https://lin.ee/491tuwoe" class="cta-btn">
+    LINEで予約する →
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="logo">
+        <span class="logo-jp">北川ゴルフ教室</span>
+        <span class="logo-en">Kitagawa Golf School · Nagoya, Aichi</span>
+      </div>
+      <p class="footer-tagline">
+        4スタンス理論マスター取得<br>
+        2013年 World Golf Teachers Cup 上海大会 優勝<br>
+        指導歴23年
+      </p>
+    </div>
+    <div class="footer-col">
+      <h4>Menu</h4>
+      <a href="#philosophy">指導理念</a>
+      <a href="#stance">4スタンス理論</a>
+      <a href="#plans">レッスンプラン</a>
+      <a href="#locations">開催場所</a>
+    </div>
+    <div class="footer-col">
+      <h4>SNS / Media</h4>
+      <a href="https://www.youtube.com/@kitagawa-golf" target="_blank">YouTube</a>
+      <a href="https://www.tiktok.com/@kitagawa_golf" target="_blank">TikTok</a>
+      <a href="https://lit.link/kitagawa50lf" target="_blank">lit.link</a>
+      <a href="https://uta619uta-dotcom.github.io/kitagawa-golf/" target="_blank">公式サイト</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 北川ゴルフ教室 All rights reserved.</p>
+    <p class="footer-award">2013 World Golf Teachers Cup · Shanghai Champion</p>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      if (e.target.querySelectorAll('.reveal').length === 0) {
+        observer.unobserve(e.target);
+      }
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
