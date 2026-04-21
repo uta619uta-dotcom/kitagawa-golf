@@ -330,6 +330,7 @@ body{background:var(--warm-white);color:var(--text-dark);font-family:'Noto Sans 
       <button class="cat-tab" onclick="filterCat(this,'swing')">スイング改善</button>
       <button class="cat-tab" onclick="filterCat(this,'score')">スコアアップ</button>
       <button class="cat-tab" onclick="filterCat(this,'beginner')">初心者向け</button>
+      <button class="cat-tab" onclick="filterCat(this,'shop')">ショップ</button>
     </div>
 
     <!-- 記事グリッド -->
@@ -352,7 +353,24 @@ body{background:var(--warm-white);color:var(--text-dark);font-family:'Noto Sans 
         </div>
       </a>
 
-      <!-- 記事②（近日公開） -->
+      <!-- 記事②：有賀園ゴルフ -->
+      <a class="article-card" data-cat="shop" onclick="showArticle('arigaen');return false;" href="#">
+        <div class="card-thumb gold">
+          🛒
+          <span class="badge-new">NEW</span>
+        </div>
+        <div class="card-body">
+          <div class="card-cat">GOLF SHOP</div>
+          <div class="card-title">【コーチおすすめ】有賀園ゴルフで賢くクラブを買う方法</div>
+          <div class="card-excerpt">初心者からベテランまで使える激安ゴルフ通販サイト。コーチ目線で選び方のポイントを解説します。</div>
+          <div class="card-meta">
+            <span>2025年版</span>
+            <span class="read-more">読む →</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 記事③（近日公開） -->
       <div class="article-card" data-cat="swing" style="opacity:.6;cursor:default;">
         <div class="card-thumb dark">⛳</div>
         <div class="card-body">
@@ -366,21 +384,24 @@ body{background:var(--warm-white);color:var(--text-dark);font-family:'Noto Sans 
         </div>
       </div>
 
-      <!-- 記事③（近日公開） -->
-      <div class="article-card" data-cat="score" style="opacity:.6;cursor:default;">
-        <div class="card-thumb gold">🎯</div>
+      <!-- 記事④：100切り -->
+      <a class="article-card" data-cat="score" onclick="showArticle('break100');return false;" href="#">
+        <div class="card-thumb gold">
+          🎯
+          <span class="badge-new">NEW</span>
+        </div>
         <div class="card-body">
           <div class="card-cat">SCORE UP</div>
-          <div class="card-title">100切りへの最短ルート｜まず直すべき3つのこと</div>
+          <div class="card-title">【コーチ直伝】100切りへの最短ルート｜まず直すべき3つのこと</div>
           <div class="card-excerpt">23年の指導経験から見えてきた「100の壁を越えられない本当の理由」と具体的な解決策。</div>
           <div class="card-meta">
-            <span>近日公開</span>
-            <span style="font-size:11px;color:var(--text-light);">準備中</span>
+            <span>2025年版</span>
+            <span class="read-more">読む →</span>
           </div>
         </div>
-      </div>
+      </a>
 
-      <!-- 記事④（近日公開） -->
+      <!-- 記事⑤（近日公開） -->
       <div class="article-card" data-cat="beginner" style="opacity:.6;cursor:default;">
         <div class="card-thumb green">🌱</div>
         <div class="card-body">
@@ -658,7 +679,374 @@ body{background:var(--warm-white);color:var(--text-dark);font-family:'Noto Sans 
     <button class="back-btn" onclick="showList()">← 記事一覧に戻る</button>
   </div>
 
-</div><!-- /article-full -->
+</div><!-- /article-full affiliiate -->
+
+<!-- ══════════════════════════════
+     ARTICLE VIEW（有賀園ゴルフ記事）
+════════════════════════════════ -->
+<div class="article-full" id="articleArigaen">
+
+  <div class="wrap">
+    <button class="back-btn" onclick="showList()">← 記事一覧に戻る</button>
+  </div>
+
+  <div class="art-hero">
+    <div class="art-hero-badge">GOLF SHOP GUIDE 2025</div>
+    <h2>【コーチおすすめ】<br><span>有賀園ゴルフで賢く<br>クラブを買う方法</span></h2>
+    <p class="art-hero-sub">激安価格×豊富な品揃え｜23年のコーチ目線で徹底解説</p>
+    <span class="art-hero-update">2025年版 最終更新</span>
+  </div>
+
+  <div class="author-bar">
+    <div class="author-icon">🏌️</div>
+    <div class="author-info">
+      <div class="author-name">北川 誠（きたがわ まこと）</div>
+      <div class="author-desc">北川ゴルフ教室 代表 ｜ 指導歴23年・指導人数500名以上 ｜ 2013年世界ゴルフ教師カップ上海大会 優勝</div>
+    </div>
+  </div>
+
+  <div class="art-container">
+
+    <nav class="toc">
+      <div class="toc-title">📋 この記事の目次</div>
+      <ol>
+        <li><a href="#ag-intro">有賀園ゴルフとは？</a></li>
+        <li><a href="#ag-merit">使うメリット3つ</a></li>
+        <li><a href="#ag-beginner">初心者の選び方</a></li>
+        <li><a href="#ag-middle">中級者の選び方</a></li>
+        <li><a href="#ag-point">買う前の注意点</a></li>
+        <li><a href="#ag-cta">まとめ</a></li>
+      </ol>
+    </nav>
+
+    <div class="intro-section" id="ag-intro">
+      <p>「クラブを買いたいけど、どこで買えばいいかわからない」—— 生徒さんからよく聞く悩みです。ゴルフ用品は高額なものも多く、失敗したくないですよね。</p>
+      <p>私が23年のコーチ経験の中で生徒さんに何度もおすすめしてきたのが<strong>「有賀園ゴルフオンライン（AGO）」</strong>です。初心者からベテランまで、幅広いレベルの方が満足できる通販サイトです。</p>
+      <div class="highlight-box">
+        <strong>この記事のポイント</strong><br>
+        ✓ 有賀園ゴルフを23年のコーチ目線で徹底解説<br>
+        ✓ レベル別（初心者・中級者）のおすすめ購入方法<br>
+        ✓ 失敗しないクラブ選びの注意点も明記
+      </div>
+    </div>
+
+    <div class="sec-heading" id="ag-merit"><h3>有賀園ゴルフを使う3つのメリット</h3><div class="sec-line"></div></div>
+
+    <div class="product-card">
+      <div class="rank-badge gold-rank">メリット①</div>
+      <div class="product-header">
+        <div class="product-cat">PRICE</div>
+        <div class="product-name">業界最安水準の価格設定</div>
+      </div>
+      <div class="product-body">
+        <div class="coach-voice">定例セールや期間限定セールが頻繁に開催されます。私の生徒さんも「思ったより安く買えた」という声が多い。定価で買う前に必ずチェックしてほしいサイトです。</div>
+        <ul class="spec-list">
+          <li>定例セール・期間限定セールを頻繁に開催</li>
+          <li>人気ブランドのクラブも割引価格で購入可能</li>
+          <li>アウトレット品も充実でコスパ抜群</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="rank-badge gold-rank">メリット②</div>
+      <div class="product-header">
+        <div class="product-cat">VARIETY</div>
+        <div class="product-name">最新〜定番まで品揃えが豊富</div>
+      </div>
+      <div class="product-body">
+        <div class="coach-voice">初心者向けの入門セットから上級者向けのツアーモデルまで幅広く揃っています。「何を買えばいいかわからない」という方でも比較しやすい構成になっています。</div>
+        <ul class="spec-list">
+          <li>初心者セット〜上級者モデルまで幅広くラインナップ</li>
+          <li>ドライバー・アイアン・ウェッジ・パターを個別購入も可能</li>
+          <li>レディース・シニア向けも充実</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="rank-badge gold-rank">メリット③</div>
+      <div class="product-header">
+        <div class="product-cat">TRUST</div>
+        <div class="product-name">実績のある老舗通販サイト</div>
+      </div>
+      <div class="product-body">
+        <div class="coach-voice">有賀園ゴルフは長年多くのゴルファーに利用されている信頼性の高いサイトです。「知らないサイトで買うのが不安」という方でも安心して購入できます。</div>
+        <ul class="spec-list">
+          <li>メディア紹介多数の実績ある通販サイト</li>
+          <li>初心者からプロまで幅広く愛用</li>
+          <li>セールバナー・商品バナーも随時更新</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sec-heading" id="ag-beginner"><h3>初心者におすすめの買い方</h3><div class="sec-line"></div></div>
+
+    <div style="padding:20px 0;">
+      <p style="font-size:14px;color:var(--text-mid);margin-bottom:16px;">ゴルフを始めたばかりの方は<strong>「初心者セット」</strong>から入るのがおすすめです。個別にバラ買いするより割安で、必要なクラブが一式揃います。</p>
+      <div class="highlight-box">
+        <strong>初心者の購入チェックリスト</strong><br>
+        ✓ ドライバー・アイアンセット・ウェッジ・パターが揃っているか<br>
+        ✓ キャディバッグが付属しているか<br>
+        ✓ シャフトの硬さが「R」または「SR」か（女性は「L」）<br>
+        ✓ 予算は2〜5万円が目安
+      </div>
+    </div>
+
+    <div class="sec-heading" id="ag-middle"><h3>中級者におすすめの買い方</h3><div class="sec-line"></div></div>
+
+    <div style="padding:20px 0;">
+      <p style="font-size:14px;color:var(--text-mid);margin-bottom:16px;">スコア100前後の方はクラブを<strong>「1本ずつ買い替える」</strong>のがおすすめです。苦手なクラブを先に強化することでスコアが効率よく上がります。</p>
+      <div class="highlight-box">
+        <strong>中級者の優先買い替え順</strong><br>
+        ✓ まずウェッジ（アプローチの精度が上がる）<br>
+        ✓ 次にパター（スコアに直結）<br>
+        ✓ ドライバーは最後でOK
+      </div>
+    </div>
+
+    <div class="sec-heading" id="ag-point"><h3>買う前の注意点</h3><div class="sec-line"></div></div>
+
+    <div style="padding:20px 0 28px;">
+      <p style="font-size:14px;color:var(--text-mid);margin-bottom:14px;">通販でクラブを買う時に気をつけてほしいことが3つあります。</p>
+      <ul class="spec-list">
+        <li>試打できないので、できれば打ちっぱなしで同モデルを試してから購入するのが理想</li>
+        <li>シャフトの硬さ・長さは自分のスイングスピードに合わせて選ぶ</li>
+        <li>迷ったらレッスンでコーチに相談してから買うと失敗が少ない</li>
+      </ul>
+    </div>
+
+    <div class="sec-heading" id="ag-cta"><h3>まとめ・有賀園ゴルフで購入する</h3><div class="sec-line"></div></div>
+
+    <div style="padding:20px 0 8px;">
+      <p style="font-size:14px;color:var(--text-mid);margin-bottom:20px;">有賀園ゴルフは価格・品揃え・信頼性の三拍子が揃った通販サイトです。次のクラブ購入の際はぜひチェックしてみてください。</p>
+      <div class="buy-row" style="border-top:none;padding-top:0;">
+        <div class="price-info">購入4%の報酬あり<strong>有賀園ゴルフ<em>ONLINE</em></strong></div>
+        <div class="buy-btns">
+          <a href="【有賀園ゴルフのアフィリエイトリンクをここに】" class="btn-amazon" target="_blank" rel="noopener">有賀園ゴルフを見る →</a>
+        </div>
+      </div>
+      <p style="font-size:11px;color:var(--text-light);margin-top:12px;">※審査通過後、A8.netで取得したアフィリエイトリンクに差し替えてください</p>
+    </div>
+
+  </div><!-- /art-container -->
+
+  <div class="cta-band">
+    <h3>クラブ選びに迷ったら</h3>
+    <p>「自分に合ったクラブがわからない」という方は<br>LINEからお気軽にご相談ください。<br>コーチが無料でアドバイスします。</p>
+    <a href="https://lin.ee/7LGpfya" class="btn-line" target="_blank" rel="noopener">🟢 LINEで無料相談する</a>
+  </div>
+
+  <div class="art-container">
+    <div class="footer-note">
+      <strong>【広告表示・免責事項】</strong><br>
+      本記事にはA8.net等のアフィリエイトリンクが含まれます。リンク経由でご購入いただいた場合、筆者に一定の報酬が発生しますが、紹介商品の選定・評価には一切影響を与えておりません。掲載価格は記事作成時点のものです。最新価格は各販売ページにてご確認ください。
+    </div>
+  </div>
+
+  <div class="wrap" style="padding-bottom:32px;">
+    <button class="back-btn" onclick="showList()">← 記事一覧に戻る</button>
+  </div>
+
+</div><!-- /article-full arigaen -->
+
+<!-- ══════════════════════════════
+     ARTICLE VIEW（100切り記事）
+════════════════════════════════ -->
+<div class="article-full" id="articleBreak100">
+
+  <div class="wrap">
+    <button class="back-btn" onclick="showList()">← 記事一覧に戻る</button>
+  </div>
+
+  <div class="art-hero">
+    <div class="art-hero-badge">SCORE IMPROVEMENT GUIDE 2025</div>
+    <h2>【ゴルフコーチ直伝】<br><span>100切りへの最短ルート</span><br>まず直すべき3つのこと</h2>
+    <p class="art-hero-sub">23年・500人以上の指導経験から見えてきた「100の壁」の本当の原因</p>
+    <span class="art-hero-update">2025年版 最終更新</span>
+  </div>
+
+  <div class="author-bar">
+    <div class="author-icon">🏌️</div>
+    <div class="author-info">
+      <div class="author-name">北川 誠（きたがわ まこと）</div>
+      <div class="author-desc">北川ゴルフ教室 代表 ｜ 指導歴23年・指導人数500名以上 ｜ 2013年世界ゴルフ教師カップ上海大会 優勝</div>
+    </div>
+  </div>
+
+  <div class="art-container">
+
+    <nav class="toc">
+      <div class="toc-title">📋 この記事の目次</div>
+      <ol>
+        <li><a href="#b100-intro">100切りできない本当の理由</a></li>
+        <li><a href="#b100-step1">①パターを磨く</a></li>
+        <li><a href="#b100-step2">②アプローチを磨く</a></li>
+        <li><a href="#b100-step3">③OBと大叩きを減らす</a></li>
+        <li><a href="#b100-roadmap">100切りロードマップ</a></li>
+        <li><a href="#b100-faq">よくある質問</a></li>
+      </ol>
+    </nav>
+
+    <div class="intro-section" id="b100-intro">
+      <p>「毎週練習しているのに100が切れない」—— この悩みを持つ方は非常に多いです。23年間で500人以上を指導してきた私が断言します。<strong>100が切れない理由は、練習量ではなく「何を練習するか」の問題です。</strong></p>
+      <p>多くの方がドライバーの飛距離を伸ばそうと練習しますが、実はそこに100切りのカギはありません。スコアを確実に縮める「3つの優先事項」に絞って練習するだけで、多くの方が数ラウンド以内にスコアが変わります。</p>
+      <div class="highlight-box">
+        <strong>この記事でわかること</strong><br>
+        ✓ 100が切れない本当の原因（スコア内訳から解説）<br>
+        ✓ 最短で100を切るための3つの優先事項<br>
+        ✓ 自宅でできる具体的な練習ドリル<br>
+        ✓ 各ステップにおすすめの練習グッズ
+      </div>
+      <p style="font-size:14px;color:var(--text-mid);margin-top:16px;padding:16px;background:var(--cream);border-left:3px solid #c0392b;">
+        <strong style="color:#c0392b;">これをやっていませんか？</strong><br>
+        ✗ 打ちっぱなしでドライバーばかり練習している<br>
+        ✗ スイングフォームの改造に時間をかけている<br>
+        ✗ 新しいクラブを買えば良くなると思っている
+      </p>
+    </div>
+
+    <div class="sec-heading"><h3>スコア100の内訳を知る</h3><div class="sec-line"></div></div>
+    <p style="font-size:14px;color:var(--text-mid);padding:16px 0;">パットとアプローチだけで全ショットの約<strong>64%</strong>を占めます。ドライバーはたった14%。つまりドライバーをいくら練習しても、スコアへの影響は限定的なのです。</p>
+
+    <!-- STEP 1 -->
+    <div class="sec-heading" id="b100-step1"><h3>STEP1：パターを磨く</h3><div class="sec-line"></div></div>
+    <div class="product-card">
+      <div class="rank-badge" style="background:#c0392b;color:#fff;">STEP 1 最優先</div>
+      <div class="product-header">
+        <div class="product-cat">PUTTING</div>
+        <div class="product-name">パターを磨く —— 1ラウンドで3打削れる最強の投資</div>
+        <div class="stars" style="color:var(--text-light);font-size:12px;letter-spacing:0;">目標：3パット以下をなくす / パット数36→32へ</div>
+      </div>
+      <div class="product-body">
+        <div class="coach-voice">100を切れない方の多くは「3パット」を頻発しています。1ラウンドで3パットが6回あると、それだけで6打の無駄打ちです。距離感を磨いてファーストパットを2m以内に寄せるだけで、パット数は劇的に減ります。</div>
+        <ul class="spec-list">
+          <li>1.5mから毎日10球連続で沈める練習（カップに入れる感覚を養う）</li>
+          <li>3m・5m・7mの距離感練習（60cm以内に止める目標で）</li>
+          <li>目を閉じてストローク練習（ヘッドの重みを感じる）</li>
+        </ul>
+        <div class="buy-row">
+          <div class="price-info">おすすめグッズ<strong>パター練習マット<em>（3m）</em></strong>参考価格 ¥4,980〜</div>
+          <div class="buy-btns">
+            <a href="https://www.amazon.co.jp/s?k=パター練習マット+リターン+3m" class="btn-amazon" target="_blank" rel="noopener">Amazon →</a>
+            <a href="https://search.rakuten.co.jp/search/mall/パター練習マット+リターン+3m/" class="btn-rakuten" target="_blank" rel="noopener">楽天 →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="sec-heading" id="b100-step2"><h3>STEP2：アプローチを磨く</h3><div class="sec-line"></div></div>
+    <div class="product-card">
+      <div class="rank-badge">STEP 2 重要</div>
+      <div class="product-header">
+        <div class="product-cat">APPROACH</div>
+        <div class="product-name">アプローチを磨く —— 50yd以内の精度がスコアを決める</div>
+        <div class="stars" style="color:var(--text-light);font-size:12px;letter-spacing:0;">目標：寄せワン率30%以上 / アプローチミスを半減</div>
+      </div>
+      <div class="product-body">
+        <div class="coach-voice">グリーン周りのアプローチを5〜10m以内に寄せるだけで、スコアは劇的に変わります。100を切れない方のほとんどはアプローチでミスして「グリーンに乗らない→大叩き」のパターンを繰り返しています。</div>
+        <ul class="spec-list">
+          <li>振り幅を9時・10時・11時の3種類で打ち分ける練習</li>
+          <li>右手1本でのアプローチ練習（フェースの向きを安定させる）</li>
+          <li>タオルを脇に挟んでの素振り（体と腕の連動を養う）</li>
+        </ul>
+        <div class="buy-row">
+          <div class="price-info">おすすめグッズ<strong>アプローチ練習ネット<em>＋マット</em></strong>参考価格 ¥7,800〜</div>
+          <div class="buy-btns">
+            <a href="https://www.amazon.co.jp/s?k=ゴルフ+アプローチ練習ネット+室内" class="btn-amazon" target="_blank" rel="noopener">Amazon →</a>
+            <a href="https://search.rakuten.co.jp/search/mall/ゴルフ+アプローチ練習ネット+室内/" class="btn-rakuten" target="_blank" rel="noopener">楽天 →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="sec-heading" id="b100-step3"><h3>STEP3：OBと大叩きを減らす</h3><div class="sec-line"></div></div>
+    <div class="product-card">
+      <div class="rank-badge" style="background:var(--gold);color:var(--green-deep);">STEP 3 安定化</div>
+      <div class="product-header">
+        <div class="product-cat">MISTAKE REDUCTION</div>
+        <div class="product-name">OBと大叩きを減らす —— 飛ばすより「コースに置く」意識へ</div>
+        <div class="stars" style="color:var(--text-light);font-size:12px;letter-spacing:0;">目標：OB・池ポチャ1ラウンド2回以内</div>
+      </div>
+      <div class="product-body">
+        <div class="coach-voice">OBが1回あると2打罰。3回あると6打の損失です。100切りを目指す段階では「飛ばすこと」より「コースに置くこと」を最優先にしてください。ドライバーをフェアウェイウッドに変えるだけでOBが激減した生徒さんを何人も見てきました。</div>
+        <ul class="spec-list">
+          <li>ドライバーが曲がるコースではフェアウェイウッドやUTに持ち替える</li>
+          <li>池・バンカー手前は「届かないクラブ」で刻む勇気を持つ</li>
+          <li>ティーショットの目標は「フェアウェイ左右30yd幅」に設定する</li>
+        </ul>
+        <div class="buy-row">
+          <div class="price-info">おすすめグッズ<strong>スイング矯正チューブ</strong>参考価格 ¥2,480〜</div>
+          <div class="buy-btns">
+            <a href="https://www.amazon.co.jp/s?k=スイング矯正+ゴムチューブ+ゴルフ" class="btn-amazon" target="_blank" rel="noopener">Amazon →</a>
+            <a href="https://search.rakuten.co.jp/search/mall/ゴルフ+スイング矯正+ゴムチューブ/" class="btn-rakuten" target="_blank" rel="noopener">楽天 →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROADMAP -->
+    <div class="sec-heading" id="b100-roadmap"><h3>100切りロードマップ</h3><div class="sec-line"></div></div>
+    <div style="padding:20px 0 32px;">
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--gold);color:var(--green-deep);display:flex;align-items:center;justify-content:center;font-weight:700;font-family:'Shippori Mincho',serif;flex-shrink:0;">1</div>
+          <div><div style="font-family:'Shippori Mincho',serif;font-size:14px;font-weight:700;color:var(--green-deep);">パター練習マットを入手・毎日5分</div><div style="font-size:12px;color:var(--text-light);">📅 今すぐ〜1ヶ月目</div></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--gold);color:var(--green-deep);display:flex;align-items:center;justify-content:center;font-weight:700;font-family:'Shippori Mincho',serif;flex-shrink:0;">2</div>
+          <div><div style="font-family:'Shippori Mincho',serif;font-size:14px;font-weight:700;color:var(--green-deep);">アプローチネットで振り幅練習・週3回</div><div style="font-size:12px;color:var(--text-light);">📅 1〜2ヶ月目</div></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--gold);color:var(--green-deep);display:flex;align-items:center;justify-content:center;font-weight:700;font-family:'Shippori Mincho',serif;flex-shrink:0;">3</div>
+          <div><div style="font-family:'Shippori Mincho',serif;font-size:14px;font-weight:700;color:var(--green-deep);">コースマネジメントを意識してラウンド</div><div style="font-size:12px;color:var(--text-light);">📅 2〜3ヶ月目</div></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--green-deep);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🏆</div>
+          <div><div style="font-family:'Shippori Mincho',serif;font-size:14px;font-weight:700;color:var(--green-deep);">100切り達成！</div><div style="font-size:12px;color:var(--text-light);">📅 3〜4ヶ月目が目安</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-section" id="b100-faq">
+      <div class="sec-heading"><h3>よくある質問</h3><div class="sec-line"></div></div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">ゴルフ歴3年ですがまだ100が切れません。何が問題ですか？<span class="arrow">▼</span></button>
+        <div class="faq-a">ゴルフ歴に関係なく、パターとアプローチの練習量が不足しているケースがほとんどです。打ちっぱなしでドライバーばかり練習していませんか？今日からパター練習に時間の半分を使ってみてください。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">練習グッズはどれか1つ買うなら何がいいですか？<span class="arrow">▼</span></button>
+        <div class="faq-a">迷わずパター練習マットです。100切りに最も直結するのはパット数の削減です。毎日5分だけでも続けることで、数ラウンド以内にスコアへの変化を実感できます。</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">週1回のラウンドだけで100切りは可能ですか？<span class="arrow">▼</span></button>
+        <div class="faq-a">可能ですが、自宅での毎日練習（5〜10分）と組み合わせると達成が速くなります。自宅練習を加えると3〜4ヶ月での達成も十分狙えます。</div>
+      </div>
+    </div>
+
+  </div><!-- /art-container -->
+
+  <div class="cta-band">
+    <h3>100切りを確実に達成したい方へ</h3>
+    <p>「自分のどこを直せばいいかわからない」<br>という方はLINEからご相談ください。<br>コーチが個別に課題を分析してアドバイスします。</p>
+    <a href="https://lin.ee/7LGpfya" class="btn-line" target="_blank" rel="noopener">🟢 LINEで無料相談する</a>
+  </div>
+
+  <div class="art-container">
+    <div class="footer-note">
+      <strong>【広告表示・免責事項】</strong><br>
+      本記事にはAmazonアソシエイト・楽天アフィリエイト等のアフィリエイトリンクが含まれます。リンク経由でご購入いただいた場合、筆者に一定の報酬が発生しますが、紹介商品の選定・評価には一切影響を与えておりません。掲載価格は記事作成時点のものです。最新価格は各販売ページにてご確認ください。
+    </div>
+  </div>
+
+  <div class="wrap" style="padding-bottom:32px;">
+    <button class="back-btn" onclick="showList()">← 記事一覧に戻る</button>
+  </div>
+
+</div><!-- /article-full break100 -->
 
 <!-- ── SITE FOOTER ── -->
 <footer class="site-footer">
@@ -687,11 +1075,14 @@ function filterCat(btn, cat) {
 // ── 記事表示切替
 function showArticle(id) {
   document.getElementById('listView').classList.add('hide');
-  document.getElementById('articleAffiliate').classList.add('show');
+  document.querySelectorAll('.article-full').forEach(a => a.classList.remove('show'));
+  if(id === 'affiliate') document.getElementById('articleAffiliate').classList.add('show');
+  if(id === 'arigaen')   document.getElementById('articleArigaen').classList.add('show');
+  if(id === 'break100')  document.getElementById('articleBreak100').classList.add('show');
   window.scrollTo({top:0,behavior:'smooth'});
 }
 function showList() {
-  document.getElementById('articleAffiliate').classList.remove('show');
+  document.querySelectorAll('.article-full').forEach(a => a.classList.remove('show'));
   document.getElementById('listView').classList.remove('hide');
   window.scrollTo({top:0,behavior:'smooth'});
 }
