@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>料金プラン｜北川ゴルフ教室</title>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #1a1f1e;
+    --dark-card: #222926;
+    --dark-card-alt: #1e2723;
+    --green-deep: #2d3d35;
+    --green-accent: #3a5a48;
+    --gold: #c5a55a;
+    --gold-light: #d4b96a;
+    --gold-glow: rgba(197,165,90,0.15);
+    --text-main: #e8e4dc;
+    --text-sub: #a8a299;
+    --text-dim: #6e6a63;
+    --white: #f5f2ec;
+    --badge-green: #3a5a48;
+    --badge-gold: rgba(197,165,90,0.18);
+    --border: rgba(197,165,90,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--dark);
+    color: var(--text-main);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── セクションヘッダー ── */
+  .section-header {
+    text-align: center;
+    padding: 60px 20px 10px;
+  }
+  .section-header .label {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-header h2 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.08em;
+  }
+  .section-header .subtitle {
+    font-size: 0.82rem;
+    color: var(--text-sub);
+    margin-top: 10px;
+    line-height: 1.7;
+  }
+
+  /* ── 会場タブ ── */
+  .venue-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 30px 20px 0;
+    flex-wrap: wrap;
+  }
+  .venue-tab {
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-sub);
+  }
+  .venue-tab.active {
+    background: var(--gold);
+    color: var(--dark);
+    border-color: var(--gold);
+    font-weight: 600;
+  }
+  .venue-tab:hover:not(.active) {
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+
+  /* ── 料金パネル ── */
+  .pricing-panels {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 24px 16px 40px;
+  }
+  .pricing-panel {
+    display: none;
+  }
+  .pricing-panel.active {
+    display: block;
+    animation: fadeUp 0.4s ease;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── 会場ラベル ── */
+  .venue-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .venue-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+  .venue-name {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .venue-area {
+    font-size: 0.75rem;
+    color: var(--text-sub);
+    margin-left: auto;
+  }
+
+  /* ── 料金カード ── */
+  .price-card {
+    background: var(--dark-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s ease;
+  }
+  .price-card:hover {
+    border-color: rgba(197,165,90,0.3);
+  }
+  .price-card.highlight {
+    border-color: var(--gold);
+    background: linear-gradient(135deg, var(--dark-card) 0%, rgba(197,165,90,0.06) 100%);
+  }
+  .price-card.highlight::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+  .card-title {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .card-badge {
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--badge-gold);
+    color: var(--gold);
+    white-space: nowrap;
+  }
+  .card-badge.green {
+    background: rgba(58,90,72,0.4);
+    color: #7ac99a;
+  }
+
+  .card-desc {
+    font-size: 0.78rem;
+    color: var(--text-sub);
+    margin-bottom: 14px;
+    line-height: 1.6;
+  }
+
+  .card-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+  .card-price-yen {
+    font-size: 0.9rem;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .card-price-amount {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .card-price-unit {
+    font-size: 0.78rem;
+    color: var(--text-sub);
+    margin-left: 4px;
+  }
+  .card-price-note {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    margin-top: 6px;
+  }
+
+  /* ── おすすめ体験 ── */
+  .trial-banner {
+    background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-accent) 100%);
+    border: 1px solid rgba(197,165,90,0.2);
+    border-radius: 14px;
+    padding: 24px;
+    text-align: center;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .trial-banner::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: rgba(197,165,90,0.04);
+  }
+  .trial-eyecatch {
+    font-size: 0.78rem;
+    color: var(--gold-light);
+    margin-bottom: 6px;
+    letter-spacing: 0.1em;
+  }
+  .trial-title {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 10px;
+  }
+  .trial-price-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 6px;
+  }
+  .trial-price {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .trial-yen {
+    font-size: 1rem;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .trial-note {
+    font-size: 0.75rem;
+    color: var(--text-sub);
+  }
+
+  /* ── 個人レッスン ── */
+  .private-section {
+    margin-top: 6px;
+  }
+  .private-card {
+    background: var(--dark-card-alt);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .private-left .private-label {
+    font-size: 0.72rem;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 4px;
+    letter-spacing: 0.05em;
+  }
+  .private-left .private-title {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .private-right {
+    text-align: right;
+  }
+  .private-right .private-price {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold);
+  }
+  .private-right .private-unit {
+    font-size: 0.72rem;
+    color: var(--text-sub);
+  }
+
+  /* ── 注意書き ── */
+  .pricing-notes {
+    margin-top: 24px;
+    padding: 16px 18px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+  .pricing-notes p {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    line-height: 1.8;
+  }
+  .pricing-notes p::before {
+    content: '※ ';
+    color: var(--text-dim);
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    text-align: center;
+    padding: 30px 20px 60px;
+  }
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 40px;
+    background: var(--gold);
+    color: var(--dark);
+    font-weight: 600;
+    font-size: 0.92rem;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(197,165,90,0.25);
+  }
+  .cta-btn:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(197,165,90,0.35);
+  }
+  .cta-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+  .cta-sub {
+    font-size: 0.75rem;
+    color: var(--text-sub);
+    margin-top: 12px;
+  }
+  .cta-phone {
+    font-size: 0.82rem;
+    color: var(--text-sub);
+    margin-top: 8px;
+  }
+  .cta-phone a {
+    color: var(--gold-light);
+    text-decoration: none;
+  }
+
+  /* ── 比較テーブル ── */
+  .compare-hint {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    padding: 14px 20px 0;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── レスポンシブ ── */
+  @media (max-width: 480px) {
+    .section-header h2 {
+      font-size: 1.35rem;
+    }
+    .card-price-amount {
+      font-size: 1.7rem;
+    }
+    .trial-price {
+      font-size: 2rem;
+    }
+    .pricing-panels {
+      padding: 20px 12px 40px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ━━━ 料金プランセクション ━━━ -->
+
+<div class="section-header">
+  <div class="label">Pricing Plan</div>
+  <h2>料金プラン</h2>
+  <p class="subtitle">会場によって料金システムが異なります<br>ご都合に合った会場をお選びください</p>
+</div>
+
+<!-- 会場切り替えタブ -->
+<div class="venue-tabs">
+  <div class="venue-tab active" onclick="switchPanel('chunichi')">中日ゴルフ</div>
+  <div class="venue-tab" onclick="switchPanel('ticket')">和合・愛西・ゾディア</div>
+
+<p class="compare-hint">▼ タブを切り替えて料金を確認</p>
+
+<!-- ━━━ パネル① 中日ゴルフ（月謝制） ━━━ -->
+<div class="pricing-panels">
+
+  <div class="pricing-panel active" id="panel-chunichi">
+    <div class="venue-label">
+      <div class="venue-dot"></div>
+      <span class="venue-name">中日ゴルフ</span>
+      <span class="venue-area">知多市</span>
+    </div>
+
+    <!-- 体験 -->
+    <div class="trial-banner">
+      <div class="trial-eyecatch">＼ まずはお試し ／</div>
+      <div class="trial-title">体験スクール</div>
+      <div class="trial-price-row">
+        <span class="trial-yen">¥</span>
+        <span class="trial-price">1,000</span>
+      </div>
+      <div class="trial-note">体験してから決めてOK</div>
+    </div>
+
+    <!-- 月謝 -->
+    <div class="price-card highlight">
+      <div class="card-top">
+        <span class="card-title">月謝制スクール</span>
+        <span class="card-badge green">月謝制</span>
+      </div>
+      <div class="card-desc">毎週決まった曜日・時間で通えるレギュラープラン<br>継続的に上達したい方におすすめ</div>
+      <div class="card-price-row">
+        <span class="card-price-yen">¥</span>
+        <span class="card-price-amount">10,000</span>
+        <span class="card-price-unit">/ 月4回</span>
+      </div>
+      <div class="card-price-note">ボール代別途</div>
+    </div>
+
+    <!-- 個人レッスン -->
+    <div class="private-section">
+      <div class="private-card">
+        <div class="private-left">
+          <div class="private-label">PRIVATE LESSON</div>
+          <div class="private-title">個人レッスン</div>
+        </div>
+        <div class="private-right">
+          <div class="private-price">¥3,000</div>
+          <div class="private-unit">20分</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pricing-notes">
+      <p>19時クラスあり（仕事帰りに通えます）</p>
+      <p>ボール代は各自ご負担となります</p>
+    </div>
+  </div>
+
+  <!-- ━━━ パネル② 回数券制会場 ━━━ -->
+  <div class="pricing-panel" id="panel-ticket">
+    <div class="venue-label">
+      <div class="venue-dot"></div>
+      <span class="venue-name">和合・愛西・ゾディア</span>
+      <span class="venue-area">回数券制</span>
+    </div>
+
+    <!-- 体験 -->
+    <div class="trial-banner">
+      <div class="trial-eyecatch">＼ まずはお試し ／</div>
+      <div class="trial-title">体験スクール</div>
+      <div class="trial-price-row">
+        <span class="trial-yen">¥</span>
+        <span class="trial-price">1,000</span>
+      </div>
+      <div class="trial-note">体験してから決めてOK</div>
+    </div>
+
+    <!-- チケット料金 -->
+    <div class="price-card">
+      <div class="card-top">
+        <span class="card-title">4回券</span>
+        <span class="card-badge">3ヶ月有効</span>
+      </div>
+      <div class="card-desc">ご自分のペースで通いたい方に</div>
+      <div class="card-price-row">
+        <span class="card-price-yen">¥</span>
+        <span class="card-price-amount">15,000</span>
+        <span class="card-price-unit">/ 4回</span>
+      </div>
+      <div class="card-price-note">1回あたり ¥3,750</div>
+    </div>
+
+    <div class="price-card highlight">
+      <div class="card-top">
+        <span class="card-title">8回券</span>
+        <span class="card-badge">お得・3ヶ月有効</span>
+      </div>
+      <div class="card-desc">しっかり通って上達を目指す方におすすめ</div>
+      <div class="card-price-row">
+        <span class="card-price-yen">¥</span>
+        <span class="card-price-amount">25,000</span>
+        <span class="card-price-unit">/ 8回</span>
+      </div>
+      <div class="card-price-note">1回あたり ¥3,125 — 4回券より ¥5,000お得</div>
+    </div>
+
+    <!-- 個人レッスン -->
+    <div class="private-section">
+      <div class="private-card">
+        <div class="private-left">
+          <div class="private-label">PRIVATE LESSON</div>
+          <div class="private-title">個人レッスン</div>
+        </div>
+        <div class="private-right">
+          <div class="private-price">¥3,000</div>
+          <div class="private-unit">20分</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pricing-notes">
+      <p>回数券の有効期限は購入日から3ヶ月間です</p>
+      <p>どの会場でもご利用いただけます</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <a href="https://lin.ee/7LGpfya" class="cta-btn">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+    LINEでお申し込み
+  </a>
+  <p class="cta-sub">LINE @491tuwoe ─ 体験のご予約もこちらから</p>
+  <p class="cta-phone">またはお電話 <a href="tel:09081579432">090-8157-9432</a></p>
+</div>
+
+<script>
+  function switchPanel(type) {
+    // タブ切り替え
+    document.querySelectorAll('.venue-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.pricing-panel').forEach(p => p.classList.remove('active'));
+
+    if (type === 'chunichi') {
+      document.querySelectorAll('.venue-tab')[0].classList.add('active');
+      document.getElementById('panel-chunichi').classList.add('active');
+    } else {
+      document.querySelectorAll('.venue-tab')[1].classList.add('active');
+      document.getElementById('panel-ticket').classList.add('active');
+    }
+  }
+</script>
+
+</body>
+</html>
