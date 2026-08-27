@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>練習しているのに上手くならない。原因は体ではなく「順番」です｜北川ゴルフスクール ブログ</title>
+<meta name="description" content="練習場に通い球数を打ってもスコアが変わらないのは、才能でも練習不足でもありません。上達の3つの段階、教わり方の4タイプ、体・頭・心の関係から、練習の中身を変えるための順番を解説します。">
+<link rel="canonical" href="https://uta619uta-dotcom.github.io/kitagawa-golf/blog-jotatsu-no-kabe.html">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700;900&family=Shippori+Mincho:wght@400;600;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#C9A84C; --gold-l:#E8C96A; --gold-pale:#F7F0DC;
+  --dark:#0D0C0A; --dark2:#161410; --dark3:#211E18;
+  --cream:#FAF7F0; --text:#28261F; --muted:#7A7060;
+  --green:#243D0E; --green2:#2D5016;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--cream);color:var(--text);line-height:1.9;overflow-x:hidden;}
+img{max-width:100%;height:auto;display:block;}
+
+/* ── SITE NAV（共通） ── */
+.site-nav{
+  position:sticky;top:0;z-index:150;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 14px;height:52px;
+  background:rgba(13,12,10,.92);backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(201,168,76,.16);
+}
+.site-nav-logo{font-family:'Shippori Mincho',serif;font-weight:800;font-size:14px;color:#fff;text-decoration:none;letter-spacing:.04em;}
+.site-nav-logo span{color:var(--gold);}
+.site-nav-links{display:flex;align-items:center;gap:12px;}
+.site-nav-links a{font-size:11px;color:rgba(255,255,255,.72);text-decoration:none;letter-spacing:.06em;transition:color .2s;white-space:nowrap;}
+.site-nav-links a:hover,.site-nav-links a.active{color:var(--gold);}
+.site-nav-cta{background:var(--gold);color:var(--dark)!important;font-weight:700;padding:7px 13px;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
+.site-nav-cta:hover{background:var(--gold-l);}
+@media(min-width:560px){
+  .site-nav{height:56px;padding:0 22px;}
+  .site-nav-logo{font-size:15px;}
+  .site-nav-links{gap:20px;}
+  .site-nav-links a{font-size:12px;}
+  .site-nav-cta{padding:8px 16px;}
+}
+
+/* ── ARTICLE LAYOUT ── */
+.article{max-width:720px;margin:0 auto;padding:0 20px;}
+@media(min-width:560px){.article{padding:0 24px;}}
+
+.breadcrumb{font-size:11px;color:var(--muted);letter-spacing:.04em;padding:20px 0 0;}
+.breadcrumb a{color:var(--muted);text-decoration:none;}
+.breadcrumb a:hover{color:var(--gold);}
+
+.article-head{padding:22px 0 8px;border-bottom:1px solid rgba(0,0,0,.08);}
+.article-cat{
+  display:inline-block;font-family:'Noto Serif JP',serif;
+  font-size:10px;letter-spacing:.2em;color:var(--gold);
+  border:1px solid rgba(201,168,76,.5);padding:4px 12px;margin-bottom:16px;
+}
+.article-head h1{
+  font-family:'Shippori Mincho',serif;font-weight:800;
+  font-size:clamp(23px,6vw,36px);line-height:1.5;color:var(--text);margin-bottom:16px;
+}
+.article-meta{font-size:11px;color:var(--muted);letter-spacing:.05em;padding-bottom:20px;}
+.article-meta span{margin-right:14px;}
+
+.article-figure{margin:26px 0 8px;}
+.article-figure img{
+  width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--dark3);
+}
+.article-figure figcaption{font-size:11px;color:var(--muted);margin-top:8px;text-align:center;}
+
+/* ── PROSE ── */
+.prose{padding:24px 0 8px;}
+.prose > p{font-size:15px;color:var(--text);margin:0 0 22px;}
+.prose .lead{font-size:16px;color:var(--muted);line-height:2;margin-bottom:30px;}
+.prose h2{
+  font-family:'Shippori Mincho',serif;font-weight:800;
+  font-size:clamp(19px,4.6vw,26px);line-height:1.6;color:var(--text);
+  margin:44px 0 18px;padding-left:14px;border-left:4px solid var(--gold);
+}
+.prose h3{
+  font-family:'Shippori Mincho',serif;font-weight:700;
+  font-size:17px;line-height:1.6;color:var(--text);margin:30px 0 12px;
+}
+.prose ul,.prose ol{margin:0 0 22px;padding-left:1.3em;}
+.prose li{font-size:15px;margin-bottom:8px;}
+.prose strong{font-weight:700;color:var(--text);border-bottom:2px solid var(--gold-pale);}
+.prose a{color:var(--green2);text-decoration:underline;text-underline-offset:2px;}
+.prose blockquote{
+  margin:26px 0;padding:18px 20px;background:#fff;
+  border-left:3px solid var(--gold);
+  font-size:14px;color:var(--muted);line-height:2;
+}
+.callout{
+  margin:26px 0;padding:22px 22px 20px;
+  background:var(--dark);color:#fff;
+  border:1px solid rgba(201,168,76,.25);
+}
+.callout .callout-label{
+  display:inline-block;font-family:'Noto Serif JP',serif;
+  font-size:10px;letter-spacing:.2em;color:var(--gold);margin-bottom:10px;
+}
+.callout p{font-size:14px;color:rgba(255,255,255,.78);line-height:2;}
+.callout strong{color:var(--gold-l);border:none;}
+
+/* ── 全記事共通CTA（編集不要） ── */
+.guide-cta{
+  background:var(--dark);
+  background-image:radial-gradient(ellipse 60% 70% at 50% 0%,rgba(201,168,76,.15) 0%,transparent 65%);
+  border:1px solid rgba(201,168,76,.22);
+  padding:38px 22px;text-align:center;margin:46px 0;
+  opacity:0;transform:translateY(20px);
+}
+.guide-cta.on{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease;}
+.guide-cta-eyebrow{
+  display:inline-block;font-family:'Noto Serif JP',serif;
+  font-size:10px;letter-spacing:.2em;color:var(--gold);
+  border:1px solid rgba(201,168,76,.45);padding:5px 14px;margin-bottom:18px;
+}
+.guide-cta-title{
+  font-family:'Shippori Mincho',serif;font-weight:800;
+  font-size:clamp(19px,5vw,27px);color:#fff;margin-bottom:13px;line-height:1.5;
+}
+.guide-cta-lead{font-size:13px;color:rgba(255,255,255,.6);line-height:2;margin-bottom:24px;}
+.guide-cta-lead strong{color:var(--gold-l);font-weight:500;}
+.guide-cta-btn{
+  display:inline-block;background:var(--gold);color:var(--dark);
+  font-weight:700;font-size:14px;padding:15px 28px;text-decoration:none;
+  letter-spacing:.04em;transition:all .3s;
+  clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
+}
+.guide-cta-btn b{letter-spacing:.08em;}
+.guide-cta-btn:hover{background:var(--gold-l);transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,168,76,.4);}
+.guide-cta-note{display:block;margin-top:15px;font-size:11px;color:rgba(255,255,255,.32);}
+@media(max-width:520px){.pc-br{display:none;}}
+
+/* ── AUTHOR ── */
+.author{
+  display:flex;gap:16px;align-items:flex-start;
+  margin:40px 0 10px;padding:22px;background:#fff;border:1px solid rgba(0,0,0,.07);
+}
+.author img{width:60px;height:60px;border-radius:50%;object-fit:cover;flex-shrink:0;}
+.author-name{font-family:'Shippori Mincho',serif;font-weight:700;font-size:14px;margin-bottom:6px;}
+.author-bio{font-size:12px;color:var(--muted);line-height:1.9;}
+
+/* ── PREV / NEXT ── */
+.article-nav{display:flex;justify-content:space-between;gap:12px;margin:32px 0 60px;}
+.article-nav a{
+  font-size:12px;color:var(--green2);text-decoration:none;letter-spacing:.04em;
+}
+.article-nav a:hover{color:var(--gold);}
+
+/* ── FOOTER ── */
+footer{background:var(--dark2);padding:42px 24px;text-align:center;border-top:1px solid rgba(201,168,76,.08);}
+footer p{font-size:12px;color:rgba(255,255,255,.22);margin-bottom:10px;}
+footer a{color:var(--gold);text-decoration:none;font-size:13px;margin:0 9px;}
+</style>
+</head>
+<body>
+
+<!-- SITE NAV（共通） -->
+<header class="site-nav">
+  <a href="index.html" class="site-nav-logo">北川ゴルフ<span>スクール</span></a>
+  <nav class="site-nav-links">
+    <a href="blog.html" class="active">ブログ</a>
+    <a href="https://lin.ee/7LGpfya" target="_blank" rel="noopener">LINE相談</a>
+    <a href="https://mosh.jp/services/315062" target="_blank" rel="noopener" class="site-nav-cta">診断予約</a>
+  </nav>
+</header>
+
+<article class="article">
+
+  <nav class="breadcrumb">
+    <a href="index.html">トップ</a> ›
+    <a href="blog.html">ブログ</a> ›
+    <span>練習法</span>
+  </nav>
+
+  <header class="article-head">
+    <span class="article-cat">練習法</span>
+    <h1>練習しているのに上手くならない。原因は体ではなく「順番」です</h1>
+  </header>
+  <p class="article-meta">
+    <span>公開日：2026.08.27</span>
+    <span>著者：北川 誠</span>
+    <span>読了：約6分</span>
+  </p>
+
+  <figure class="article-figure">
+    <img src="images/lesson-2.jpg" alt="練習場でスイング中の動きをサポートする北川コーチの個別レッスン">
+    <figcaption>考えずに振れる状態まで、動きを体の記憶に落としていく</figcaption>
+  </figure>
+
+  <div class="prose">
+
+    <p class="lead">
+      練習場には通っている。球数も打っている。それなのにコースに出るとスコアが変わらない。その壁にぶつかっているのは、才能でも練習不足でもありません。上達の「順番」を飛ばしているだけです。
+    </p>
+
+    <h2>結論：上達を決めるのは球数ではなく順番</h2>
+    <p>
+      何百球打つかではなく、自分に合ったやり方で、正しい順番を踏んだか。ここを外したまま量を増やしても、変わるのは疲労だけです。
+    </p>
+
+    <h2>1. 上達には3つの段階がある</h2>
+    <p>動きが身につくまでには、必ず順番があります。</p>
+
+    <h3>① わかる段階</h3>
+    <p>
+      教わったことの意味が腑に落ちる時期。まだミスは多く、試しながら直していきます。ここで結果を求めると心が折れます。
+    </p>
+
+    <h3>② つながる段階</h3>
+    <p>
+      バラバラだった動きがつながり、タイミングに意識が向く時期。ここで大事なのが<strong>「今のが良い当たりだ」と自分で感じ取れること</strong>。人に言われて気づくうちは、まだ自分のものになっていません。
+    </p>
+
+    <h3>③ 考えなくてもできる段階</h3>
+    <p>
+      車の運転と同じです。ベテランドライバーは「次はこのペダル」と考えません。スイングも、考えずに振れて初めて完成です。
+    </p>
+    <p>
+      裏を返せば、振っている最中に手順を考えているうちは、まだ身についていないということ。ここを体の記憶に落とすために、私は「歩く動作」を使っています。誰でも考えずにできる動きだからです。
+    </p>
+
+    <h2>2. 教わり方には4つのタイプがある</h2>
+    <p>
+      同じ言葉が、人によって届いたり届かなかったりします。情報の受け取り方に癖があるからです。
+    </p>
+    <ul>
+      <li>とにかく打って覚えたいタイプ — 素振りを繰り返し、体で確かめたい</li>
+      <li>感覚をつかみたいタイプ — まずやってみたい。分析ばかりだと飽きる</li>
+      <li>見て覚えたいタイプ — 映像やお手本を見て、頭に絵を描きたい</li>
+      <li>理屈で納得したいタイプ — 理由が分からないと動けない</li>
+    </ul>
+    <p>
+      理屈で納得したい人に「シュッと振って！」と言っても、絶対に伝わりません。逆に、感覚でつかみたい人に理論を並べれば、その場で興味を失います。
+    </p>
+    <p>
+      レッスンが合わなかった経験があるなら、それはあなたのせいでも、コーチの腕のせいでもありません。伝え方が噛み合っていないだけです。
+    </p>
+
+    <div class="callout">
+      <span class="callout-label">PHILOSOPHY</span>
+      <p>
+        <strong>型にハマるな、自分にハマれ。</strong>私が指導で一番大事にしているのはここです。
+      </p>
+    </div>
+
+    <!-- ══ 全記事共通CTA（記事の中盤に1つ） ══ -->
+    <aside class="guide-cta">
+      <span class="guide-cta-eyebrow">読者限定・無料プレゼント</span>
+      <h3 class="guide-cta-title">タイプ別「シャフト選びガイド」</h3>
+      <p class="guide-cta-lead">
+        4スタンス理論であなたの体型タイプを判定し、<br class="pc-br">
+        合うシャフトの<strong>重量・硬さ・キックポイント</strong>がひと目でわかる早見表。<br class="pc-br">
+        LINEの友だち登録で受け取れます。
+      </p>
+      <a class="guide-cta-btn" href="https://line.me/R/ti/p/%40491tuwoe" target="_blank" rel="noopener">
+        LINE <b>@491tuwoe</b> で受け取る
+      </a>
+      <span class="guide-cta-note">友だち追加後「ガイド」と送信でも自動でお届けします</span>
+    </aside>
+
+    <h2>3. 体・頭・心、3つ揃って初めて身につく</h2>
+    <p>上達には3つの要素があります。</p>
+    <ul>
+      <li>体 — 実際に動かすこと</li>
+      <li>頭 — 状況を読み、選ぶこと</li>
+      <li>心 — 緊張しても、いつも通りでいられること</li>
+    </ul>
+    <p>
+      練習場では打てるのにコースで別人になる人は、体だけを鍛えて、頭と心を置き去りにしています。ドライバーの飛距離より、この2つのほうがスコアに直結します。
+    </p>
+
+    <h2>よくある間違い</h2>
+    <ul>
+      <li>球数を増やせば解決すると思っている</li>
+      <li>段階を飛ばして、いきなり「考えずに振れる」を狙う</li>
+      <li>上手い人のやり方をそのまま真似る</li>
+      <li>良い当たりの感覚を、自分で確かめる作業をしていない</li>
+    </ul>
+    <p>
+      どれか一つでも当てはまるなら、練習の中身を変えるだけでスコアは動きます。
+    </p>
+
+    <h2>レッスンでの実例</h2>
+    <p>
+      ある生徒さんは、ダウンスイングで「タメ」を作る練習をずっと続けていました。ところがタイミングが合わず、当たりが安定しない状態が長く続いていました。
+    </p>
+    <p>
+      タイプを確認したところ、この方はタメを作らず、テンポよく振ったほうが合うタイプでした。練習の方向を逆にしてもらうと、その場で芯に当たり始め、手応えが戻ってきました。
+    </p>
+    <p>
+      変化はそこで終わりませんでした。それまでのラウンドでは、常にスイングのことばかり考えていてスムーズに振れなかったそうです。それが「頭がスッキリして、思い切り振れた」と。最後にこう言われました。
+    </p>
+
+    <blockquote>これからのゴルフが楽しみです</blockquote>
+
+    <p>
+      練習が足りなかったのではありません。合わない練習を、真面目に続けていただけです。そして合うやり方に変えると、体より先に頭が軽くなります。
+    </p>
+
+    <h2>まとめ</h2>
+    <p>
+      「なぜできないのか」と悩んだときは、一度クラブを置いてください。そして、自分がどの段階にいて、どのタイプなのかを確かめる。それだけで、次の練習の中身が変わります。
+    </p>
+    <p>
+      上達は、腕からではなく頭から始まります。自分の段階とタイプを対面で確かめたい方は、<a href="https://mosh.jp/services/315062" target="_blank" rel="noopener">4スタンス診断レッスン</a>でお手伝いします。
+    </p>
+
+  </div>
+
+  <!-- ══ 全記事共通CTA（記事末に1つ） ══ -->
+  <aside class="guide-cta">
+    <span class="guide-cta-eyebrow">読者限定・無料プレゼント</span>
+    <h3 class="guide-cta-title">タイプ別「シャフト選びガイド」を受け取る</h3>
+    <p class="guide-cta-lead">
+      あなたの体型に合うシャフトの<strong>重量・硬さ・キックポイント</strong>がわかる早見表を、<br class="pc-br">
+      LINE公式アカウントで無料配布しています。
+    </p>
+    <a class="guide-cta-btn" href="https://line.me/R/ti/p/%40491tuwoe" target="_blank" rel="noopener">
+      LINE <b>@491tuwoe</b> で受け取る
+    </a>
+    <span class="guide-cta-note">友だち追加後「ガイド」と送信でも自動でお届けします</span>
+  </aside>
+
+  <div class="author">
+    <img src="profile.jpg" alt="北川 誠">
+    <div>
+      <p class="author-name">北川 誠（きたがわ まこと）</p>
+      <p class="author-bio">北川ゴルフスクール代表。4スタンス理論マスター級トレーナー。指導歴25年、2013年 World Golf Teachers Cup 優勝。愛知県内4会場のレッスンと全国対応のオンライン添削を行う。</p>
+    </div>
+  </div>
+
+  <nav class="article-nav">
+    <a href="blog.html">‹ 記事一覧へ戻る</a>
+    <a href="blog.html">別の記事を読む ›</a>
+  </nav>
+
+</article>
+
+<footer>
+  <p>© 2026 北川ゴルフスクール｜北川 誠</p>
+  <p style="margin-top:12px;">
+    <a href="index.html">トップ</a>
+    <a href="blog.html">ブログ</a>
+    <a href="https://www.youtube.com/@kitagawa_golf8" target="_blank" rel="noopener">YouTube</a>
+    <a href="https://lin.ee/7LGpfya" target="_blank" rel="noopener">LINE登録</a>
+  </p>
+  <p style="margin-top:14px;font-family:'Shippori Mincho',serif;color:var(--gold);font-size:12px;letter-spacing:.15em;">2013 World Golf Teachers Cup · Shanghai Champion</p>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); obs.unobserve(e.target); } });
+}, {threshold:0.12});
+document.querySelectorAll('.guide-cta').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

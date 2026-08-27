@@ -25,11 +25,44 @@
 html{scroll-behavior:smooth;}
 body{font-family:'Noto Sans JP',sans-serif;background:var(--cream);color:var(--text);line-height:1.8;overflow-x:hidden;}
 
+/* ── SITE NAV ── */
+.site-nav{
+  position:sticky;top:0;z-index:150;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 14px;height:52px;
+  background:rgba(13,12,10,.9);backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(201,168,76,.16);
+}
+.site-nav-logo{
+  font-family:'Shippori Mincho',serif;font-weight:800;font-size:14px;
+  color:#fff;text-decoration:none;letter-spacing:.04em;
+}
+.site-nav-logo span{color:var(--gold);}
+.site-nav-links{display:flex;align-items:center;gap:12px;}
+.site-nav-links a{
+  font-size:11px;color:rgba(255,255,255,.72);text-decoration:none;
+  letter-spacing:.06em;transition:color .2s;white-space:nowrap;
+}
+.site-nav-links a:hover{color:var(--gold);}
+.site-nav-cta{
+  background:var(--gold);color:var(--dark)!important;font-weight:700;
+  padding:7px 13px;
+  clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+}
+.site-nav-cta:hover{background:var(--gold-l);}
+@media(min-width:560px){
+  .site-nav{height:56px;padding:0 22px;}
+  .site-nav-logo{font-size:15px;}
+  .site-nav-links{gap:20px;}
+  .site-nav-links a{font-size:12px;}
+  .site-nav-cta{padding:8px 16px;}
+}
+
 /* ── HERO ── */
 .hero{
-  min-height:100vh;background:var(--dark);
+  min-height:calc(100vh - 52px);background:var(--dark);
   display:flex;flex-direction:column;justify-content:center;align-items:center;
-  text-align:center;padding:100px 24px 80px;position:relative;overflow:hidden;
+  text-align:center;padding:80px 24px 80px;position:relative;overflow:hidden;
 }
 .hero-bg{
   position:absolute;inset:0;
@@ -501,6 +534,16 @@ footer a{color:var(--gold);text-decoration:none;font-size:13px;margin:0 10px;}
 </style>
 </head>
 <body>
+
+<!-- SITE NAV -->
+<header class="site-nav">
+  <a href="index.html" class="site-nav-logo">北川ゴルフ<span>スクール</span></a>
+  <nav class="site-nav-links">
+    <a href="blog.html">ブログ</a>
+    <a href="https://lin.ee/7LGpfya" target="_blank" rel="noopener">LINE相談</a>
+    <a href="https://mosh.jp/services/315062" target="_blank" rel="noopener" class="site-nav-cta">診断予約</a>
+  </nav>
+</header>
 
 <!-- STICKY -->
 <div class="sticky" id="sticky">

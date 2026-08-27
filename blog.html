@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ブログ｜北川ゴルフスクール｜4スタンス理論でゴルフ上達</title>
+<meta name="description" content="4スタンス理論マスター級トレーナー・北川誠が書くゴルフ上達ブログ。スイング・クラブ選び・スコアメイク・練習法のヒントを、体のタイプ別の視点で解説します。">
+<link rel="canonical" href="https://uta619uta-dotcom.github.io/kitagawa-golf/blog.html">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700;900&family=Shippori+Mincho:wght@400;600;800&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#C9A84C; --gold-l:#E8C96A; --gold-pale:#F7F0DC;
+  --dark:#0D0C0A; --dark2:#161410; --dark3:#211E18;
+  --cream:#FAF7F0; --text:#28261F; --muted:#7A7060;
+  --green:#243D0E; --green2:#2D5016;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--cream);color:var(--text);line-height:1.8;overflow-x:hidden;}
+img{max-width:100%;height:auto;display:block;}
+
+/* ── SITE NAV ── */
+.site-nav{
+  position:sticky;top:0;z-index:150;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 14px;height:52px;
+  background:rgba(13,12,10,.92);backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(201,168,76,.16);
+}
+.site-nav-logo{
+  font-family:'Shippori Mincho',serif;font-weight:800;font-size:14px;
+  color:#fff;text-decoration:none;letter-spacing:.04em;
+}
+.site-nav-logo span{color:var(--gold);}
+.site-nav-links{display:flex;align-items:center;gap:12px;}
+.site-nav-links a{
+  font-size:11px;color:rgba(255,255,255,.72);text-decoration:none;
+  letter-spacing:.06em;transition:color .2s;white-space:nowrap;
+}
+.site-nav-links a:hover,.site-nav-links a.active{color:var(--gold);}
+.site-nav-cta{
+  background:var(--gold);color:var(--dark)!important;font-weight:700;
+  padding:7px 13px;
+  clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+}
+.site-nav-cta:hover{background:var(--gold-l);}
+@media(min-width:560px){
+  .site-nav{height:56px;padding:0 22px;}
+  .site-nav-logo{font-size:15px;}
+  .site-nav-links{gap:20px;}
+  .site-nav-links a{font-size:12px;}
+  .site-nav-cta{padding:8px 16px;}
+}
+
+/* ── PAGE HERO ── */
+.page-hero{
+  background:var(--dark);position:relative;overflow:hidden;
+  padding:54px 24px 46px;text-align:center;
+}
+.page-hero::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 70% 60% at 50% 120%,rgba(201,168,76,.14) 0%,transparent 70%);
+}
+.page-hero-inner{position:relative;z-index:1;}
+.eyebrow{
+  font-size:10px;letter-spacing:.25em;color:var(--gold);
+  font-family:'Noto Serif JP',serif;margin-bottom:14px;display:block;
+}
+.page-hero h1{
+  font-family:'Shippori Mincho',serif;font-weight:800;
+  font-size:clamp(24px,6vw,40px);color:#fff;line-height:1.4;margin-bottom:14px;
+}
+.page-hero p{
+  font-size:13px;color:rgba(255,255,255,.55);max-width:560px;margin:0 auto;line-height:2;
+}
+
+/* ── LAYOUT ── */
+.wrap{max-width:1000px;margin:0 auto;padding:0 18px;}
+@media(min-width:560px){.wrap{padding:0 24px;}}
+
+/* ── FILTER TABS ── */
+.filter{
+  display:flex;gap:8px;flex-wrap:wrap;justify-content:center;
+  padding:30px 0 6px;
+}
+.filter button{
+  font-family:'Noto Sans JP',sans-serif;
+  font-size:11px;letter-spacing:.06em;padding:7px 15px;
+  border:1px solid rgba(0,0,0,.14);background:#fff;color:var(--muted);
+  cursor:pointer;transition:all .2s;border-radius:999px;
+}
+.filter button:hover{border-color:var(--gold);color:var(--text);}
+.filter button.active{background:var(--dark);color:var(--gold);border-color:var(--dark);}
+
+/* ── ARTICLE GRID ── */
+.grid{
+  display:grid;grid-template-columns:1fr;gap:18px;
+  padding:26px 0 8px;
+}
+@media(min-width:640px){.grid{grid-template-columns:1fr 1fr;gap:22px;}}
+@media(min-width:940px){.grid{grid-template-columns:1fr 1fr 1fr;}}
+
+.card{
+  background:#fff;border:1px solid rgba(0,0,0,.07);
+  text-decoration:none;color:inherit;display:flex;flex-direction:column;
+  transition:transform .2s,box-shadow .2s;
+  opacity:0;transform:translateY(20px);
+}
+.card.on{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease;}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.09);}
+.card-thumb{
+  aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;background:var(--dark3);
+}
+.card-thumb img{width:100%;height:100%;object-fit:cover;}
+.card-thumb.a{background:linear-gradient(135deg,var(--dark),var(--dark3));}
+.card-thumb.b{background:linear-gradient(135deg,#3a2e10,#6a5020);}
+.card-thumb.c{background:linear-gradient(135deg,var(--green),var(--green2));}
+.card-thumb .tag{
+  position:absolute;top:10px;left:10px;
+  background:var(--gold);color:var(--dark);
+  font-size:9px;font-weight:700;letter-spacing:.1em;padding:3px 9px;
+}
+.card-body{padding:16px 18px 20px;flex:1;display:flex;flex-direction:column;}
+.card-date{font-size:10px;letter-spacing:.1em;color:var(--muted);margin-bottom:8px;}
+.card-title{
+  font-family:'Shippori Mincho',serif;font-weight:800;
+  font-size:15px;line-height:1.55;color:var(--text);margin-bottom:9px;
+}
+.card-ex{font-size:12px;color:var(--muted);line-height:1.9;flex:1;}
+.card-more{margin-top:12px;font-size:11px;color:var(--gold);letter-spacing:.08em;font-weight:700;}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);font-size:13px;padding:40px 0;}
+
+/* ── 全記事共通CTA ── */
+.guide-cta{
+  background:var(--dark);
+  background-image:radial-gradient(ellipse 60% 70% at 50% 0%,rgba(201,168,76,.15) 0%,transparent 65%);
+  border:1px solid rgba(201,168,76,.22);
+  padding:38px 22px;text-align:center;margin:44px 0 60px;
+  opacity:0;transform:translateY(20px);
+}
+.guide-cta.on{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease;}
+.guide-cta-eyebrow{
+  display:inline-block;font-family:'Noto Serif JP',serif;
+  font-size:10px;letter-spacing:.2em;color:var(--gold);
+  border:1px solid rgba(201,168,76,.45);padding:5px 14px;margin-bottom:18px;
+}
+.guide-cta-title{
+  font-family:'Shippori Mincho',serif;font-weight:800;
+  font-size:clamp(19px,5vw,27px);color:#fff;margin-bottom:13px;line-height:1.5;
+}
+.guide-cta-lead{font-size:13px;color:rgba(255,255,255,.6);line-height:2;margin-bottom:24px;}
+.guide-cta-lead strong{color:var(--gold-l);font-weight:500;}
+.guide-cta-btn{
+  display:inline-block;background:var(--gold);color:var(--dark);
+  font-weight:700;font-size:14px;padding:15px 28px;text-decoration:none;
+  letter-spacing:.04em;transition:all .3s;
+  clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
+}
+.guide-cta-btn b{letter-spacing:.08em;}
+.guide-cta-btn:hover{background:var(--gold-l);transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,168,76,.4);}
+.guide-cta-note{display:block;margin-top:15px;font-size:11px;color:rgba(255,255,255,.32);}
+@media(max-width:520px){.pc-br{display:none;}}
+
+/* ── FOOTER ── */
+footer{background:var(--dark2);padding:42px 24px;text-align:center;border-top:1px solid rgba(201,168,76,.08);}
+footer p{font-size:12px;color:rgba(255,255,255,.22);margin-bottom:10px;}
+footer a{color:var(--gold);text-decoration:none;font-size:13px;margin:0 9px;}
+</style>
+</head>
+<body>
+
+<!-- SITE NAV -->
+<header class="site-nav">
+  <a href="index.html" class="site-nav-logo">北川ゴルフ<span>スクール</span></a>
+  <nav class="site-nav-links">
+    <a href="blog.html" class="active">ブログ</a>
+    <a href="https://lin.ee/7LGpfya" target="_blank" rel="noopener">LINE相談</a>
+    <a href="https://mosh.jp/services/315062" target="_blank" rel="noopener" class="site-nav-cta">診断予約</a>
+  </nav>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <span class="eyebrow">BLOG</span>
+    <h1>ゴルフ上達ブログ</h1>
+    <p>「なぜ練習しても上手くならないのか」——体のタイプという視点から、スイング・クラブ選び・スコアメイクのヒントをお届けします。</p>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <!-- FILTER -->
+  <div class="filter" id="filter">
+    <button data-cat="all" class="active">すべて</button>
+    <button data-cat="swing">スイング</button>
+    <button data-cat="practice">練習法</button>
+  </div>
+
+  <!-- ARTICLE GRID -->
+  <div class="grid" id="grid">
+
+    <a class="card" href="blog-jotatsu-no-kabe.html" data-cat="practice">
+      <div class="card-thumb"><img src="images/lesson-2.jpg" alt="練習場でスイング中の動きをサポートする北川コーチの個別レッスン"><span class="tag">練習法</span></div>
+      <div class="card-body">
+        <span class="card-date">2026.08.27</span>
+        <h3 class="card-title">練習しているのに上手くならない。原因は体ではなく「順番」です</h3>
+        <p class="card-ex">球数を打っても変わらないのは、才能でも練習不足でもありません。上達には順番があります。</p>
+        <span class="card-more">記事を読む →</span>
+      </div>
+    </a>
+
+    <a class="card" href="blog-type-mayoi.html" data-cat="swing">
+      <div class="card-thumb"><img src="images/lesson-3.jpg" alt="芝の上でアプローチを指導する北川コーチと生徒"><span class="tag">スイング</span></div>
+      <div class="card-body">
+        <span class="card-date">2026.08.20</span>
+        <h3 class="card-title">タイプが分かると、上手くなる前に「迷い」が消えます</h3>
+        <p class="card-ex">上達を止めているのは技術ではなく迷いかもしれません。</p>
+        <span class="card-more">記事を読む →</span>
+      </div>
+    </a>
+
+    <a class="card" href="blog-slice.html" data-cat="swing">
+      <div class="card-thumb"><img src="images/lesson-1.jpg" alt="練習場で構えの向きと体の向きを確認する北川コーチの指導"><span class="tag">スイング</span></div>
+      <div class="card-body">
+        <span class="card-date">2026.08.13</span>
+        <h3 class="card-title">スライスが直らない人へ。原因は振り方ではなく、構えた時点で決まっています</h3>
+        <p class="card-ex">スライスの原因は振り方ではなく、構えた時点で決まっています。</p>
+        <span class="card-more">記事を読む →</span>
+      </div>
+    </a>
+
+  </div>
+
+  <p class="empty" id="empty" style="display:none;">このカテゴリーの記事は準備中です。</p>
+
+  <!-- ══ 全記事共通CTA ══ -->
+  <aside class="guide-cta" id="guideCta">
+    <span class="guide-cta-eyebrow">読者限定・無料プレゼント</span>
+    <h3 class="guide-cta-title">タイプ別「シャフト選びガイド」</h3>
+    <p class="guide-cta-lead">
+      4スタンス理論であなたの体型タイプを判定し、<br class="pc-br">
+      合うシャフトの<strong>重量・硬さ・キックポイント</strong>がひと目でわかる早見表。<br class="pc-br">
+      LINEの友だち登録で受け取れます。
+    </p>
+    <a class="guide-cta-btn" href="https://line.me/R/ti/p/%40491tuwoe" target="_blank" rel="noopener">
+      LINE <b>@491tuwoe</b> で受け取る
+    </a>
+    <span class="guide-cta-note">友だち追加後「ガイド」と送信でも自動でお届けします</span>
+  </aside>
+
+</main>
+
+<footer>
+  <p>© 2026 北川ゴルフスクール｜北川 誠</p>
+  <p style="margin-top:12px;">
+    <a href="index.html">トップ</a>
+    <a href="blog.html">ブログ</a>
+    <a href="https://www.youtube.com/@kitagawa_golf8" target="_blank" rel="noopener">YouTube</a>
+    <a href="https://lin.ee/7LGpfya" target="_blank" rel="noopener">LINE登録</a>
+  </p>
+  <p style="margin-top:14px;font-family:'Shippori Mincho',serif;color:var(--gold);font-size:12px;letter-spacing:.15em;">2013 World Golf Teachers Cup · Shanghai Champion</p>
+</footer>
+
+<script>
+// reveal-on-scroll
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); obs.unobserve(e.target); } });
+}, {threshold:0.08});
+document.querySelectorAll('.card, .guide-cta').forEach(el => obs.observe(el));
+
+// category filter
+const grid = document.getElementById('grid');
+const empty = document.getElementById('empty');
+document.getElementById('filter').addEventListener('click', e => {
+  const btn = e.target.closest('button');
+  if(!btn) return;
+  document.querySelectorAll('#filter button').forEach(b => b.classList.toggle('active', b === btn));
+  const cat = btn.dataset.cat;
+  let shown = 0;
+  grid.querySelectorAll('.card').forEach(card => {
+    const match = cat === 'all' || card.dataset.cat === cat;
+    card.style.display = match ? '' : 'none';
+    if(match){ shown++; card.classList.add('on'); }
+  });
+  empty.style.display = shown ? 'none' : 'block';
+});
+</script>
+</body>
+</html>
